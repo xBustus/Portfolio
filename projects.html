@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 </head>
-  <body class="bg-black overflow-hidden bg-linear-to-t from-orange-950 via-black to-black">
+  <body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col flex-grow">
     <header class="shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
         <div>
           <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
@@ -27,10 +27,10 @@
           <img src="./assets/menu.svg" class="w-10 h-10" alt="Menu" />
         </div>
       </header>
-  
-      <div class="p-8">
-        <h2 class="text-3xl font-semibold mb-6">Meus Projetos</h2>
-        <p class="text-center text-white text-4xl font-bold leading-snug tracking-wide mb-6 text-shadow-lg">
+  <main class="flex flex-col mx-2 text-white mt-32 flex-grow">
+      <div class="p-8 text-center">
+        <h2 class="text-4xl font-semibold mb-6 font-[JetBrains_Mono] font-bold">Meus Projetos</h2>
+        <p class="text-center text-white text-3xl leading-snug tracking-wide mb-6 text-shadow-lg">
           Bem-vindo ao meu portfólio! <br>
           Aqui você encontra tudo sobre meus projetos, habilidades e mais. <br>
           Vamos juntos criar algo incrível!
@@ -39,7 +39,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <!-- Card 1 -->
           <div class="bg-black shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
-            <img src="assets/Group 32.png" alt="Projeto 1" class="bg-white w-full max-h-48 object-cover">
+            <img src="assets/GBsys.png" alt="Projeto 1" class="bg-white w-full max-h-48 object-cover">
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2 text-white">AirLink</h3>
               <p class="text-gray-700 mb-4">AirLink é uma ferramenta open-source de criação de páginas personalizadas de links, inspirada no LinkTree, mas totalmente gratuita. Permite aos usuários customizarem suas páginas com facilidade, sem custos, oferecendo uma experiência simples e eficiente para compartilhar links e conteúdos.</p>
@@ -49,28 +49,50 @@
       
           <!-- Card 2 -->
           <div class="bg-black shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
-            <img src="assets/Group 1.png" alt="Projeto 2" class="w-full h-48 object-cover">
+            <img src="assets/GBsys.png" alt="Projeto 1" class="bg-white w-full max-h-48 object-cover">
             <div class="p-6">
-              <h3 class="text-xl text-white font-semibold mb-2 text-white">OnDemandCoursePlatform</h3>
-              <p class="text-gray-700 mb-4">Essa plataforma oferece cursos online com acesso baseado em diferentes níveis de assinatura (Free, Basic, Premium). Os usuários podem se cadastrar, fazer login seguro e acessar os cursos conforme a assinatura. Utilizando React para a interface e PostgreSQL para o banco de dados, a plataforma proporciona uma experiência de aprendizado prática e flexível.</p>
-              <a href="link_do_projeto_2" class="text-blue-500 hover:text-blue-700">Saiba mais</a>
+              <h3 class="text-xl font-semibold mb-2 text-white">GB Courses</h3>
+              <p class="text-gray-700 mb-4">A GB Courses é uma plataforma de ensino on-demand projetada para oferecer cursos de alta qualidade para profissionais e entusiastas da tecnologia. Nossa missão é democratizar o aprendizado, proporcionando uma experiência acessível, prática e dinâmica.
+
+                <br><br>🚀 Destaques da Plataforma:<br>
+                ✅ Aprendizado Flexível – Acesse os cursos a qualquer momento, de qualquer lugar, sem restrições.<br>
+                ✅ Conteúdo de Qualidade – Cursos desenvolvidos por especialistas, abordando desde conceitos fundamentais até tópicos avançados.<br>
+                ✅ Certificação – Comprove seus conhecimentos com certificados reconhecidos.<br>
+                ✅ Experiência Intuitiva – Interface moderna e responsiva para facilitar sua jornada de aprendizado.<br>
+                ✅ Foco em Tecnologia – Aprenda sobre desenvolvimento de software, hardware, sistemas embarcados e muito mais.<br><br>
+                
+                Seja para aprimorar suas habilidades ou iniciar uma nova carreira, a GB Courses é o seu parceiro ideal para o sucesso no mundo da tecnologia! </p>
+              <a href="link_do_projeto_1" class="text-blue-500 hover:text-blue-700">Saiba mais</a>
             </div>
           </div>
       
           <!-- Card 3 -->
           <div class="bg-black shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
-            <img src="assets/Group 1.png" alt="Projeto 3" class="w-full h-48 object-cover">
+            <img src="assets/GBsys.png" alt="Projeto 1" class="bg-white w-full max-h-48 object-cover">
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2 text-white">Projeto 3</h3>
-              <p class="text-gray-700 mb-4">Uma descrição breve do projeto 3. Detalhes sobre o que foi feito e os resultados alcançados.</p>
-              <a href="link_do_projeto_3" class="text-blue-500 hover:text-blue-700">Saiba mais</a>
+              <h3 class="text-xl font-semibold mb-2 text-white">Portfolio</h3>
+              <p class="text-gray-700 mb-4">🚀 Engenheiro de hardware e software apaixonado por inovação e tecnologia. Desenvolvo soluções completas, desde o design de circuitos até sistemas embarcados e aplicações web modernas.<br><br>
+
+                🔹 Sobre mim:<br>
+                🔧 Especialista em desenvolvimento de hardware e firmware<br>
+                🖥️ Criador da GB SYSTEMS, focada em soluções de software e tecnologia<br>
+                📡 Construindo a plataforma GB Courses, uma solução de cursos on-demand<br>
+                🎯 Sempre ampliando minha Endless List de desafios e aprendizados<br><br>
+                
+                🔹 Tecnologias:<br>
+                ⚡ Desenvolvimento de sistemas embarcados e eletrônicos<br>
+                💻 Full-stack development com Tailwind CSS, React, Node.js e mais<br>
+                ⚙️ Integração entre hardware e software para projetos de alto desempenho<br><br>
+                
+                💡 Vamos construir algo incrível juntos? Conecte-se comigo!</p>
+              <a href="index.html" class="text-blue-500 hover:text-blue-700">Saiba mais</a>
             </div>
           </div>
       
           <!-- Você pode adicionar mais cards aqui seguindo o mesmo formato -->
         </div>
       </div>
-      
+    </main>
       <footer class="flex flex-col items-center justify-center bg-black py-4 relative inset-x-0 bottom-0">
         <p class="text-white text-sm uppercase tracking-wide left-0 transform -translate-x-24">Powered by</p>
         <div class="flex items-center gap-2 justify-center">
