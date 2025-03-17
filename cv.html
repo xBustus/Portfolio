@@ -44,46 +44,60 @@
   <body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col ">
     <header class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
       <div>
-        <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
+          <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
       </div>
       <div class="hidden md:flex space-x-4 font-[JetBrains_mono]">
-        <a href="index.html"><p class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</p></a>
-        <a href="blog.html"><p class="text-[20px] hover:text-white lg:text-[32px]">blog</p></a>     
-        <a href="projects.html"><p class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</p></a>
-        <a href="endlessList.html"><p class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless List</p></a>
-        <a href="cv.html"><p class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</p></a>
+          <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
+          <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
+          <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
+          <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless List</a>
+          <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
       </div>
-      <div class="md:hidden">
-        <img src="./assets/menu.svg" class="w-10 h-10" alt="Menu" />
-      </div>
-    </header>
+      <div class="md:hidden relative">
+        <!-- Botão Hambúrguer -->
+        <button id="menuButton" class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+            ☰
+        </button>
+        
+        <!-- Menu -->
+        <div id="menu" class="hidden fixed top-14 left-0 w-full bg-black p-4 rounded-lg shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform -translate-y-5 opacity-0 overflow-y-auto">
+            <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
+            <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
+            <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
+            <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless List</a>
+            <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
+        </div>
+    </div>
+  
+  </header>
 
     <main class="flex flex-col mx-2 text-white mt-18">
       <!-- Seção dos ícones -->
-      <div class="flex">
-        <div class="w-800 h-30 border-2 border-orange-400 rounded-xl relative flex justify-center items-center gap-12 shadow-lg shadow-orange-700">
-          <!-- Ícones -->
-          <img align="center" alt="Bustus-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#f7df1e] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#3178c6] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#61dafb] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#e34f26] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#1572b6] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Python" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#306998] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-SQL" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#1e3a8a] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Bootstrap" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#563d7c] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Electron" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/electron/electron-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#47848f] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Express" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#f8f8f8] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Figma" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#f24e1e] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-NodeJs" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#68a063] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Linux" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#333333] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-PostgreSQL" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#336791] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Postman" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#e27600] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-Tailwind" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#38b2ac] hover:scale-125 transition-all duration-300 ease-in-out">
-          <img align="center" alt="Bustus-NextJs" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" class="icon opacity-0 drop-shadow-[0_0_10px_#000000] hover:scale-125 transition-all duration-300 ease-in-out">
+      <div class="flex justify-center overflow-hidden">
+        <div class="w-[340px] md:w-[1000px] h-auto border-2 border-orange-400 rounded-xl flex flex-wrap justify-center items-center gap-4 p-4 shadow-lg shadow-orange-700">
+            <!-- Ícones -->
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg" alt="js-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#f7df1e] hover:scale-110 transition-all duration-300">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg" alt="ts-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#3178c6] hover:scale-110 transition-all duration-300">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#61dafb] hover:scale-110 transition-all duration-300">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="html-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#e34f26] hover:scale-110 transition-all duration-300">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="css-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#1572b6] hover:scale-110 transition-all duration-300">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="py-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#306998] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" alt="sql-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#1e3a8a] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" alt="bootstrap-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#563d7c] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/electron/electron-original.svg" alt="electron-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#47848f] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="ex-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#f8f8f8] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="fig-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#f24e1e] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" alt="node-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#68a063] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="linux-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#333333] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="postgresql-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#336791] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="postman-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#e27600] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="tailwind-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#38b2ac] hover:scale-110 transition-all duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="next-bustus" class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#000000] hover:scale-110 transition-all duration-300">
         </div>
-      </div>
+    </div>
     
-      <div class="flex justify-between p-8 mt-8 gap-16 items-start">
+    
+    <div class="flex flex-col md:flex-row justify-between p-8 mt-2 gap-16 items-start">
         <!-- Experiência Profissional (Esquerda) -->
         <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
           <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Experiência Profissional</h2>
@@ -110,7 +124,7 @@
       
         <!-- Educação (Direita) -->
          <div class="flex flex-col">
-        <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
+           <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
           <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Educação</h2>
           
           <!-- Formação Acadêmica -->
@@ -126,25 +140,25 @@
         
           <!-- Certificações -->
           <h3 class="text-2xl font-bold mt-6 mb-4">Certificações</h3>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li><span class="font-semibold text-white">Especialista em Arquitetura e Organização de Computadores</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Programming Basics</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Object-Oriented Developer</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">DB Developer</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Mobile Developer</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Smart Data Structures</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">HTML5 e CSS3 Avançado</span> — Alura</li>
-            <li><span class="font-semibold text-white">JavaScript Básico</span> — Alura</li>
-            <li><span class="font-semibold text-white">Git e GitHub</span> — Alura</li>
-          </ul>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+              <li><span class="font-semibold text-white">Especialista em Arquitetura e Organização de Computadores</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Programming Basics</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Object-Oriented Developer</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">DB Developer</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Mobile Developer</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Smart Data Structures</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">HTML5 e CSS3 Avançado</span> — Alura</li>
+              <li><span class="font-semibold text-white">JavaScript Básico</span> — Alura</li>
+              <li><span class="font-semibold text-white">Git e GitHub</span> — Alura</li>
+            </ul>
         </div>
 
-        <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-8">
-          <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Idiomas</h2>
-          <p class="text-gray-300">Ingles - Wizard W6 - B2 CEFR<br></p><p class="text-gray-300">Espanhol - Autodidata - A2 CEFR</p>
+            <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-8">
+              <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Idiomas</h2>
+              <p class="text-gray-300">Ingles - Wizard W6 - B2 CEFR<br></p><p class="text-gray-300">Espanhol - Autodidata - A2 CEFR</p>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
       </div>
       
     </main>
