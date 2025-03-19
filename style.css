@@ -1,0 +1,16 @@
+.oculto {
+    max-height: 0; /* Inicialmente "invisível" */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
+    opacity: 0; /* Invisível visualmente */
+    visibility: hidden; /* Fora da acessibilidade */
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s 0.5s; /* Transições suaves */
+}
+
+.oculto.show {
+    max-height: 1000px; /* Um valor alto suficiente para o conteúdo */
+    opacity: 1; /* Torna visível */
+    visibility: visible; /* Visível no DOM */
+    transition: max-height 1s ease-in-out, opacity 1s ease-in-out; /* Transições para animação */
+}
+
+    
