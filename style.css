@@ -12,5 +12,3 @@
     visibility: visible; /* Visível no DOM */
     transition: max-height 1s ease-in-out, opacity 1s ease-in-out; /* Transições para animação */
 }
-
-    
