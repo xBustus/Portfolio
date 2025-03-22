@@ -8,13 +8,14 @@
   <title>Portfólio</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
     rel="stylesheet">
 </head>
 
-<body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col min-h-screen">
+<body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col flex-grow">
   <header class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
     <div>
       <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
@@ -45,54 +46,43 @@
     </div>
   </header>
   <main class="flex flex-col mx-2 text-white mt-32 flex-grow">
-    <div class="flex flex-col space-y-16">
-      <div class="text-right ml-auto max-w-9/10 bg-black text-white rounded-lg shadow-lg p-6 outline">
-        <h2 class="text-2xl font-semibold mb-2">GB Courses</h2>
-        <p class="text-sm text-gray-400 mb-4">Março 19, 2025</p>
-        <button
-          class="text-black drop-shadow-[0_0_10px_#D13800] outline-none w-30 h-10 rounded-full bg-orange-700 aboutSwitch font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out">saiba
-          mais</button>
-        <p class="text-lg oculto mt-4">Estamos entusiasmados em anunciar que a nossa plataforma de cursos online está em
-          pleno desenvolvimento, com o objetivo de oferecer uma experiência de aprendizado personalizada e acessível
-          para todos. A plataforma será estruturada de forma a atender a diferentes níveis de assinatura, garantindo que
-          os usuários possam escolher entre planos que atendam às suas necessidades educacionais.<br><br>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          O desenvolvimento da plataforma foi cuidadosamente dividido em milestones para garantir um progresso eficiente
-          e de qualidade. Cada fase será concluída com rigor e atenção aos detalhes, proporcionando uma plataforma
-          robusta e intuitiva para os usuários.<br><br>
+<div class="bg-white rounded-lg shadow-lg overflow-hidden border-4 border-orange-500 flex flex-col h-full">
+    <img src="certificados/AI.png" alt="" class="w-full h-48 object-cover object-center">
+    <div class="p-4 bg-black flex flex-col flex-1">
+      <h3 class="text-xl font-semibold text-white">Certificado de Ferramentas e Aplicações da Inteligência Artificial</h3>
+      <a href="certificados/Ferramentas e Aplicacoes da IA.pdf" download class="text-xl px-6 py-3 text-black drop-shadow-[0_0_10px_#D13800] outline-none rounded-full bg-orange-700 font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out block mx-auto w-[44%] mt-auto mb-5">Baixar documento</a>
+    </div>
+  </div> 
 
-          Fique atento às próximas atualizações enquanto trabalhamos para entregar uma solução inovadora e eficaz para o
-          aprendizado online.</p>
-      </div>
-      <div class="max-w-9/10 bg-black text-white rounded-lg shadow-lg p-6 outline">
-        <h2 class="text-2xl font-semibold mb-2">AirLink em desenvolvimento</h2>
-        <p class="text-sm text-gray-400 mb-4">Março 19, 2025</p>
-        <button
-          class="text-black drop-shadow-[0_0_10px_#D13800] outline-none w-30 h-10 rounded-full bg-orange-700 aboutSwitch font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out">saiba
-          mais</button>
-        <p class="text-lg oculto mt-4">Anunciamos oficialmente que o AirLink está em pleno desenvolvimento. O projeto
-          foi estruturado em várias fases, organizadas em milestones, com o objetivo de garantir um avanço contínuo e
-          estruturado. Para saber mais sobre as etapas de desenvolvimento do AirLink, <a href="">clique aqui.</a>
-        </p>
-      </div>
-      <div class="text-right ml-auto max-w-9/10 bg-black text-white rounded-lg shadow-lg p-6 outline">
-        <h2 class="text-2xl font-semibold mb-2">Quem sou eu?</h2>
-        <p class="text-sm text-gray-400 mb-4">Março 16, 2025</p>
-        <button
-          class="text-black drop-shadow-[0_0_10px_#D13800] outline-none w-30 h-10 rounded-full bg-orange-700 aboutSwitch font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out">saiba
-          mais</button>
-        <p class="text-lg oculto mt-4">Engenheiro de hardware e software com experiência no desenvolvimento de soluções
-          completas, desde o design de circuitos até sistemas embarcados e aplicações web.<br>
-          Atualmente, estou à frente da GB SYSTEMS, focada em desenvolvimento de software e tecnologia, e trabalhando na
-          plataforma GB Courses, uma solução de cursos on-demand.<br>
-          Tenho experiência em desenvolvimento de sistemas embarcados, eletrônicos e full-stack, utilizando tecnologias
-          como Tailwind CSS, React e Node.js. Meu objetivo é integrar hardware e software para criar soluções de alto
-          desempenho.</p>
-      </div>
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden border-4 border-orange-500 flex flex-col h-full">
+    <img src="certificados/global network.png" alt="" class="w-full h-48 object-cover object-center">
+    <div class="p-4 bg-black flex flex-col flex-1">
+      <h3 class="text-xl font-semibold text-white">Certificado de Global Network</h3>
+      <a href="certificados/global network.pdf" download class="text-xl px-6 py-3 text-black drop-shadow-[0_0_10px_#D13800] outline-none rounded-full bg-orange-700 font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out block mx-auto w-[44%] mt-auto mb-5">Baixar documento</a>
+    </div>
+  </div>
+  
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden border-4 border-orange-500 flex flex-col h-full">
+    <img src="certificados/local area network.png" alt="" class="w-full h-48 object-cover object-center">
+    <div class="p-4 bg-black flex flex-col flex-1">
+      <h3 class="text-xl font-semibold text-white">Certificado de Local Area Network</h3>
+      <a href="certificados/local area network.pdf" download class="text-xl px-6 py-3 text-black drop-shadow-[0_0_10px_#D13800] outline-none rounded-full bg-orange-700 font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out block mx-auto w-[44%] mt-auto mb-5">Baixar documento</a>
+    </div>
+  </div>
+  
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden border-4 border-orange-500 flex flex-col h-full">
+    <img src="certificados/excel.png" alt="" class="w-full h-48 object-cover object-center">
+    <div class="p-4 bg-black flex flex-col flex-1">
+      <h3 class="text-xl font-semibold text-white">Certificado de Excel</h3>
+      <a href="certificados/Excel.pdf" download class="text-xl px-6 py-3 text-black drop-shadow-[0_0_10px_#D13800] outline-none rounded-full bg-orange-700 font-[JetBrains_Mono] hover:scale-110 transition-all duration-300 ease-in-out block mx-auto w-[44%] mt-auto mb-5">Baixar documento</a>
+    </div>
+  </div>
+  
+
   </main>
-
-
-  <footer class="flex flex-col items-center justify-center bg-black py-4 mt-8 relative inset-x-0 bottom-0">
+  <footer class="flex flex-col items-center justify-center bg-black py-4 relative inset-x-0 bottom-0">
     <p class="text-white text-sm uppercase tracking-wide left-0 transform -translate-x-24">Powered by</p>
     <div class="flex items-center justify-center gap-2">
       <div class="flex items-center">

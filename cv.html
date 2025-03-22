@@ -100,37 +100,36 @@
 </head>
 
 <body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col ">
-  <header
-    class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
+  <header class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
     <div>
       <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
     </div>
-    <div class="hidden md:flex space-x-4 font-[JetBrains_mono]">
-      <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
-      <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
-      <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
-      <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless
-        List</a>
+  
+
+    <nav class="hidden md:flex space-x-4 font-[JetBrains_mono]">
+      <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">home</a>
+      <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">blog</a>
+      <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Projects</a>
+      <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Endless List</a>
       <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
-    </div>
+    </nav>
+  
+ 
     <div class="md:hidden relative">
-      <button id="menuButton"
-        class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+      <button id="menuButton" class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
         ☰
       </button>
-      <div id="menu"
-        class="hidden fixed top-14 left-0 w-full bg-black p-4 rounded-lg shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform -translate-y-5 opacity-0 overflow-y-auto">
+  
+      <div id="menu" class="hidden fixed top-12 left-0 w-full bg-black p-4 shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform overflow-y-auto translate-y-0 opacity-100">
         <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
         <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
-        <a href="projects.html"
-          class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
-        <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless
-          List</a>
+        <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
+        <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless List</a>
         <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
       </div>
     </div>
   </header>
-  <main class="flex flex-col mx-2 text-white mt-18">>
+  <main class="flex flex-col mx-2 text-white mt-18">
     <div class="flex justify-center overflow-hidden">
       <div
         class="w-[340px] md:w-[1000px] h-auto border-2 border-orange-400 rounded-xl flex flex-wrap justify-center items-center gap-4 p-4 shadow-lg shadow-orange-700">
@@ -187,66 +186,73 @@
       </div>
     </div>
     <div class="flex flex-col md:flex-row justify-between p-8 mt-2 gap-16 items-start">
-      <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Experiência Profissional</h2>
-        <div id="cargo-description" class="text-lg text-gray-300">
-          <p class="text-lg font-semibold text-white">Auxiliar administrativo | Sampa Motors LTDA | 10/2024 - Atualmente
-          </p>
-          <ul class="list-disc pl-6">
-            <li>Apoio nas rotinas administrativas gerais, como controle de documentos e elaboração de relatórios;</li>
-            <li>Organização e gestão de arquivos físicos e digitais, garantindo a atualização e acessibilidade de
-              informações importantes;</li>
-            <li>Responsável pela realização de processos de RO, onde efetuo a solicitação e a devolução de itens com
-              problemas;</li>
-            <li>Participação na otimização de processos internos para garantir maior eficiência nas operações diárias.
-            </li>
-          </ul>
-          <p>Busco contribuir com habilidades organizacionais e de gestão para fortalecer o ambiente administrativo e
-            garantir o bom funcionamento da empresa.</p>
-          <br>
-          <p class="text-lg font-semibold text-white">Técnico de TI - Estágio | Strong Tech Ltda | 02/2023 - 06/2023</p>
-          <ul class="list-disc pl-6 text-gray-300">
-            <li>Iniciei como Técnico de Montagem e Teste de Computadores, sendo responsável pela montagem e teste de
-              equipamentos;</li>
-            <li>Promovido a Técnico na Devolução, onde lidava com processos de devolução, análise de garantias e envio
-              de produtos para manutenção ou expedição;</li>
-            <li>Participei do desenvolvimento do site institucional da empresa, utilizando HTML5, CSS3 e JavaScript.
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="flex flex-col">
+      <div>
         <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Educação</h2>
-          <div class="mb-4">
-            <p class="text-lg font-semibold">Bacharelado em Engenharia da Computação</p>
-            <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
-          </div>
-          <div class="mb-4">
-            <p class="text-lg font-semibold">Tecnólogo em Gestão Financeira</p>
-            <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
-          </div>
-          <h3 class="text-2xl font-bold mt-6 mb-4">Certificações</h3>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li><span class="font-semibold text-white">Especialista em Arquitetura e Organização de Computadores</span>
-              — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Programming Basics</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Object-Oriented Developer</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">DB Developer</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Mobile Developer</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">Smart Data Structures</span> — Faculdade Descomplica</li>
-            <li><span class="font-semibold text-white">HTML5 e CSS3 Avançado</span> — Alura</li>
-            <li><span class="font-semibold text-white">JavaScript Básico</span> — Alura</li>
-            <li><span class="font-semibold text-white">Git e GitHub</span> — Alura</li>
-          </ul>
+          <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Experiência Profissional</h2>
+            <div id="cargo-description" class="text-lg text-gray-300">
+              <p class="text-lg font-semibold text-white">Auxiliar administrativo | Sampa Motors LTDA | 10/2024 - Atualmente
+              </p>
+              <ul class="list-disc pl-6">
+                <li>Apoio nas rotinas administrativas gerais, como controle de documentos e elaboração de relatórios;</li>
+                <li>Organização e gestão de arquivos físicos e digitais, garantindo a atualização e acessibilidade de
+                  informações importantes;</li>
+                <li>Responsável pela realização de processos de RO, onde efetuo a solicitação e a devolução de itens com
+                  problemas;</li>
+                <li>Participação na otimização de processos internos para garantir maior eficiência nas operações diárias.
+                </li>
+              </ul>
+              <p>Busco contribuir com habilidades organizacionais e de gestão para fortalecer o ambiente administrativo e
+                garantir o bom funcionamento da empresa.</p>
+              <br>
+              <p class="text-lg font-semibold text-white">Técnico de TI - Estágio | Strong Tech Ltda | 02/2023 - 06/2023</p>
+              <ul class="list-disc pl-6 text-gray-300">
+                <li>Iniciei como Técnico de Montagem e Teste de Computadores, sendo responsável pela montagem e teste de
+                  equipamentos;</li>
+                <li>Promovido a Técnico na Devolução, onde lidava com processos de devolução, análise de garantias e envio
+                  de produtos para manutenção ou expedição;</li>
+                <li>Participei do desenvolvimento do site institucional da empresa, utilizando HTML5, CSS3 e JavaScript.
+                </li>
+              </ul>
+            </div>
         </div>
-        <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-8">
-          <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Idiomas</h2>
-          <p class="text-gray-300">Ingles - Wizard W6 - B2 CEFR<br></p>
-          <p class="text-gray-300">Espanhol - Autodidata - A2 CEFR</p>
+            <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-4">
+              <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Certificados</h2>
+              <p class="text-gray-300 mb-4">Voce pode acessar os Certificados cliacando no link abaixo</p>
+              <a href="certificados.html"></a>
+            </div>
+      </div>
+        <div class="flex flex-col">
+          <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Educação</h2>
+            <div class="mb-4">
+              <p class="text-lg font-semibold">Bacharelado em Engenharia da Computação</p>
+              <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
+            </div>
+            <div class="mb-4">
+              <p class="text-lg font-semibold">Tecnólogo em Gestão Financeira</p>
+              <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
+            </div>
+            <h3 class="text-2xl font-bold mt-6 mb-4">Certificações</h3>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+              <li><span class="font-semibold text-white">Especialista em Arquitetura e Organização de Computadores</span>
+                — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Programming Basics</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Object-Oriented Developer</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">DB Developer</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Mobile Developer</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">Smart Data Structures</span> — Faculdade Descomplica</li>
+              <li><span class="font-semibold text-white">HTML5 e CSS3 Avançado</span> — Alura</li>
+              <li><span class="font-semibold text-white">JavaScript Básico</span> — Alura</li>
+              <li><span class="font-semibold text-white">Git e GitHub</span> — Alura</li>
+            </ul>
+          </div>
+          <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-14">
+            <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Idiomas</h2>
+            <p class="text-gray-300">Ingles - Wizard W6 - B2 CEFR<br></p>
+            <p class="text-gray-300">Espanhol - Autodidata - A2 CEFR</p>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </main>
   <div class="flex-grow"></div>

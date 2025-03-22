@@ -16,32 +16,31 @@
 </head>
 
 <body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col flex-grow">
-  <header
-    class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
+  <header class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
     <div>
       <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
     </div>
-    <div class="hidden md:flex space-x-4 font-[JetBrains_mono]">
-      <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
-      <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
-      <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
-      <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless
-        List</a>
+  
+
+    <nav class="hidden md:flex space-x-4 font-[JetBrains_mono]">
+      <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">home</a>
+      <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">blog</a>
+      <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Projects</a>
+      <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Endless List</a>
       <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
-    </div>
+    </nav>
+  
+ 
     <div class="md:hidden relative">
-      <button id="menuButton"
-        class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+      <button id="menuButton" class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
         ☰
       </button>
-      <div id="menu"
-        class="hidden fixed top-14 left-0 w-full bg-black p-4 rounded-lg shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform -translate-y-5 opacity-0 overflow-y-auto">
+  
+      <div id="menu" class="hidden fixed top-12 left-0 w-full bg-black p-4 shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform overflow-y-auto translate-y-0 opacity-100">
         <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
         <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
-        <a href="projects.html"
-          class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
-        <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless
-          List</a>
+        <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
+        <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless List</a>
         <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
       </div>
     </div>
@@ -59,7 +58,7 @@
         Sinta-se à vontade para explorar!
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 ">
-        <!-- Card 1 -->
+       
         <div class="bg-black shadow-lg rounded-lg overflow-hidden flex flex-col outline">
           <img src="assets/AirLink.jpg" alt="Projeto 1" class="bg-white w-full max-h-48 object-cover">
           <div class="p-6 flex-grow">
@@ -84,7 +83,7 @@
             saiba mais
           </a>
         </div>
-        <!-- Card 2 -->
+  
         <div class="bg-black shadow-lg rounded-lg overflow-hidden flex flex-col outline">
           <img src="assets/gb.png" alt="Projeto 2" class="bg-white w-full max-h-48 object-cover">
           <div class="p-6 flex-grow">
@@ -111,7 +110,7 @@
             saiba mais
           </a>
         </div>
-        <!-- Card 3 -->
+ 
         <div class="bg-black shadow-lg rounded-lg overflow-hidden flex flex-col outline">
           <img src="assets/Meu Portfolio.png" alt="Projeto 3" class="bg-white w-full max-h-48 object-cover">
           <div class="p-6 flex-grow">
