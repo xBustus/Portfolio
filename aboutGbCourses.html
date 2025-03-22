@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
       height: 100vh;
       overflow: hidden;
     }
+
     .container {
       text-align: center;
       padding: 30px;
@@ -25,6 +27,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
       animation: fadeIn 1s ease-out;
     }
+
     h1 {
       font-size: 8rem;
       color: #e67e22;
@@ -32,12 +35,14 @@
       text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
       animation: bounce 1s infinite alternate;
     }
+
     p {
       font-size: 1.25rem;
       color: #bbb;
       margin-top: 10px;
       animation: fadeInText 1.5s ease-out;
     }
+
     a {
       display: inline-block;
       margin-top: 30px;
@@ -50,25 +55,44 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease-in-out;
     }
+
     a:hover {
       transform: scale(1.1);
       background-color: #d35400;
     }
-    /* Animações */
+
     @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-20px); }
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-20px);
+      }
     }
+
     @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
+
     @keyframes fadeInText {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>404</h1>
@@ -76,4 +100,5 @@
     <a href="index.html">Voltar para a página inicial</a>
   </div>
 </body>
+
 </html>
