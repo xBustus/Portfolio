@@ -19,9 +19,9 @@ menuButton.addEventListener("click", () => {
 
 function aboutSwitch(current, onClass, offClass) {
     if (current.classList.contains(onClass)) {
-        current.classList.remove(onClass); // Oculta o texto
+        current.classList.remove(onClass);
     } else {
-        current.classList.add(onClass); // Mostra o elemento com animação
+        current.classList.add(onClass);
     }
 }
 
@@ -32,7 +32,20 @@ document.querySelectorAll('.aboutSwitch').forEach(button => {
     });
 });
 
+// endlessList
+const metas = document.getElementById('metas');
 
-// forEach
+function aboutSwitch2(current, onClass, offClass) {
+    if (current.classList.contains(onClass)) {
+        current.classList.remove(onClass);
+    } else {
+        current.classList.add(onClass);
+    }
+}
 
-//for(i = 0; i < document.querySelectorAll('.aboutSwitch').length; i++;) {}
+document.querySelectorAll('.aboutSwitch2').forEach(button => {
+    button.addEventListener("click", function () {
+        const current = this.closest('li').querySelector('.oculto');
+        aboutSwitch2(current, 'show', 'hidden')
+    });
+});

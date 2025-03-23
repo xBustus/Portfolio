@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
     rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     .fade-in-up {
       animation: fadeInUp 1s ease-out forwards;
@@ -60,31 +60,41 @@
 </head>
 
 <body class="bg-black bg-linear-to-t from-orange-950 via-black to-black">
-  <header class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
+  <header
+    class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
     <div>
       <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
     </div>
-  
+
 
     <nav class="hidden md:flex space-x-4 font-[JetBrains_mono]">
-      <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">home</a>
-      <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">blog</a>
-      <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Projects</a>
-      <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Endless List</a>
+      <a href="index.html"
+        class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">home</a>
+      <a href="blog.html"
+        class="text-[20px] hover:text-white lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">blog</a>
+      <a href="projects.html"
+        class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Projects</a>
+      <a href="endlessList.html"
+        class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px] border-r border-gray-300 border-opacity-20 pr-4">Endless
+        List</a>
       <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
     </nav>
-  
- 
+
+
     <div class="md:hidden relative">
-      <button id="menuButton" class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+      <button id="menuButton"
+        class="p-2 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
         ☰
       </button>
-  
-      <div id="menu" class="hidden fixed top-12 left-0 w-full bg-black p-4 shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform overflow-y-auto translate-y-0 opacity-100">
+
+      <div id="menu"
+        class="hidden fixed top-12 left-0 w-full bg-black p-4 shadow-lg flex flex-col space-y-4 font-[JetBrains_mono] transition-all duration-300 transform overflow-y-auto translate-y-0 opacity-100">
         <a href="index.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">home</a>
         <a href="blog.html" class="text-[20px] hover:text-white lg:text-[32px]">blog</a>
-        <a href="projects.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
-        <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless List</a>
+        <a href="projects.html"
+          class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Projects</a>
+        <a href="endlessList.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">Endless
+          List</a>
         <a href="cv.html" class="text-[20px] hover:text-white duration-300 ease-in-out lg:text-[32px]">CV</a>
       </div>
     </div>
@@ -109,10 +119,10 @@
       <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" />
     </svg>
   </main>
-  <section class="text-white text-center font-[JetBrains_mono]">
-    <p class="py-4"><strong>A Endless List: O Infinito das Possibilidades</strong></p>
+  <section class="mt-8 text-white text-center font-[JetBrains_mono]">
+    <h2 class="py-4"><strong>A Endless List: O Infinito das Possibilidades</strong></h2>
     <p class="py-4">
-      <span class="underline decoration-orange-600">A Endless List</span> (ou Lista Infinita) é uma forma criativa de
+      <span class="text-orange-500">A Endless List</span> (ou Lista Infinita) é uma forma criativa de
       acompanhar
       suas conquistas e de se motivar continuamente. Ao invés de ser apenas
       uma lista de desejos, ela é uma lista dinâmica e em constante evolução,
@@ -144,6 +154,145 @@
       pessoal uma jornada constante, onde cada passo adiante abre um novo
       caminho.
     </p>
+    <div class="flex flex-col items-center justify-center border-t-2 border-gray-300 mt-4 mb-4">
+      <h2 class="text-xl font-semibold text-center text-orange-500"><strong>Metas</strong></h2>
+
+      <div id="metas" class="w-[80%] text-sm md:text-xl">
+        <h3 class="text-center my-4">Atletismo</h3>
+        <ul class="outline bg-black text-white text-center w-full rounded-lg p-4">
+          <li>
+            <strong>Correr 1km</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Semana 1-2: Treinar corrida de 500m, 3 vezes por semana.</li>
+                <li>Semana 3-4: Aumentar para 750m, 3 vezes por semana.</li>
+                <li>Semana 5-6: Correr 1km sem parar, 3 vezes por semana.</li>
+                <li>Semana 7: Correr 1km em 6-8 minutos.</li>
+                <li><strong>Prazo:</strong> Correr 1km em 30 minutos até o final de 2 meses.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <strong>Pedalar 30km</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Semana 1-2: Pedalar 10km, 3 vezes por semana.</li>
+                <li>Semana 3-4: Pedalar 15km, 3 vezes por semana.</li>
+                <li>Semana 5-6: Pedalar 25km, 3 vezes por semana.</li>
+                <li>Semana 7-8: Pedalar 30km, 2 vezes por semana.</li>
+                <li><strong>Prazo:</strong> Completar os 30km até o final de 2 meses.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <strong>Atingir o 3° grau em Muay Thai</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Focar em técnica básica e resistência.</li>
+                <li>Intensificar treinos técnicos, iniciando sparring leve.</li>
+                <li>Prática contínua e intensificar o sparring para avaliar o progresso.</li>
+                <li><strong>Prazo:</strong> Alcançar o 3° grau no Muay Thai dentro de 1 ano.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <h3 class="text-center my-4">Profissional</h3>
+        <ul class="outline bg-black text-white text-center w-full rounded-lg p-4">
+          <li>
+            <strong>USP MBA - Engenharia de Software</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Pesquisa sobre os melhores programas de MBA em Engenharia de Software e reunir
+                  documentação.</li>
+                <li>Aplicar para o MBA escolhido, planejar os custos e começar o processo de
+                  inscrição.</li>
+                <li>Iniciar o MBA e focar em matérias introdutórias.</li>
+                <li>Concluir o MBA com um plano de projeto final.</li>
+                <li><strong>Prazo:</strong> Concluir o MBA em 3 anos.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <strong>Certificado CS50's - Harvard</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Iniciar o curso CS50's.</li>
+                <li>Completar os módulos introdutórios e a primeira avaliação.</li>
+                <li>Trabalhar no projeto final e concluir o curso.</li>
+                <li><strong>Prazo:</strong> Completar o CS50's em 1 ano.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <strong>Certificação AWS</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Estudar para o exame AWS Certified Solutions Architect.</li>
+                <li>Realizar prática intensiva com testes simulados.</li>
+                <li>Agendar e realizar o exame de certificação.</li>
+                <li><strong>Prazo:</strong> Obter a certificação AWS em 4 meses.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <h3 class="text-center my-4">Educação</h3>
+        <ul class="outline bg-black text-white text-center w-full rounded-lg p-4">
+          <li>
+            <strong>Se tornar proficiente em inglês</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Aulas de inglês (online ou presencial), 3 vezes por semana.</li>
+                <li>Começar a praticar conversação com falantes nativos ou em grupos.</li>
+                <li>Preparar-se para um teste de proficiência (como TOEFL ou IELTS).</li>
+                <li><strong>Prazo:</strong> Alcançar proficiência C1 dentro de 1 ano</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <strong>Neurociência</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Iniciar cursos online introdutórios sobre Neurociência.</li>
+                <li>Focar no estudo de livros fundamentais (como "O Cérebro" de David Eagleman).</li>
+                <li>Iniciar um projeto ou estudo mais aprofundado sobre áreas específicas de Neurociência.</li>
+                <li><strong>Prazo:</strong> Obter uma boa base de conhecimento em 4 meses.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <strong>Filosofia</strong> - <button
+              class="aboutSwitch2 text-orange-500 hover:underline cursor-pointer">Saiba mais</button>
+            <div class="oculto mt-2 text-left">
+              <ul class="list-inside list-disc">
+                <li>Ler "O Mundo de Sofia" e assistir a vídeos introdutórios.</li>
+                <li>Estudar filósofos clássicos como Platão, Aristóteles e Kant.</li>
+                <li>Começar a escrever resumos ou artigos sobre filosofia.</li>
+                <li><strong>Prazo:</strong> Ter uma compreensão sólida de Filosofia até o final de 4 meses.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+
   </section>
   <footer class="flex flex-col items-center justify-center bg-black py-4 relative inset-x-0 bottom-0">
     <p class="text-white text-sm uppercase tracking-wide left-0 transform -translate-x-24">Powered by</p>
@@ -156,9 +305,10 @@
         </svg>
       </div>
     </div>
-    <p class="text-white text-center text-sm font-[JetBrains_Mono] mt-2">© 2025 Gabriel Bustus. Todos os direitos reservados.</p>
+    <p class="text-white text-center text-sm font-[JetBrains_Mono] mt-2">© 2025 Gabriel Bustus. Todos os direitos
+      reservados.</p>
   </footer>
   <script src="script.js"></script>
 </body>
- 
+
 </html>
