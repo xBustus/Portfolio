@@ -14,7 +14,8 @@
     rel="stylesheet">
 </head>
 
-<body class="bg-black bg-linear-to-t from-orange-950 via-black to-black min-h-screen flex flex-grow flex-col">
+<body class="bg-black min-h-screen flex flex-grow flex-col">
+  <spline-viewer url="https://prod.spline.design/7W1Kt3XwIS-bn20l/scene.splinecode" class="particle-3d"></spline-viewer>
   <header class="bg-black shadow-md shadow-orange-700 h-12 w-full fixed flex justify-between items-center px-6 text-gray-300 z-30 md:h-16">
     <div>
       <p class="text-[20px] font-[JetBrains_mono] md:text-[32px]">Gabriel Bustus</p>
@@ -137,6 +138,9 @@ c50.119-47.032,111.04-71.607,178.739-74.012c81.404-2.892,162.991-0.685,244.499-0
         </svg>
       </a>
     </div>
+
+
+
   </main>
   <footer class="flex flex-col items-center justify-center bg-black py-4 relative inset-x-0 bottom-0">
     <p class="text-white text-sm uppercase tracking-wide left-0 transform -translate-x-24">Powered by</p>
@@ -149,9 +153,12 @@ c50.119-47.032,111.04-71.607,178.739-74.012c81.404-2.892,162.991-0.685,244.499-0
         </svg>
       </div>
     </div>
-    <p class="text-white text-sm font-[JetBrains_Mono] mt-2">© 2025 Gabriel Bustus. Todos os direitos reservados.</p>
+    <p class="text-white text-center text-sm font-[JetBrains_Mono] mt-2">© 2025 Gabriel Bustus. Todos os direitos reservados.</p>
   </footer>
   <script src="script.js"></script>
+
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.80/build/spline-viewer.js"></script>
+
 </body>
 
 </html>

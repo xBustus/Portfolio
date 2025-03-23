@@ -12,91 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
     rel="stylesheet" />
-  <style>
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .icon:nth-child(1) {
-      animation: fadeIn 0.5s ease-out 0.2s forwards;
-    }
-
-    .icon:nth-child(2) {
-      animation: fadeIn 0.5s ease-out 0.4s forwards;
-    }
-
-    .icon:nth-child(3) {
-      animation: fadeIn 0.5s ease-out 0.6s forwards;
-    }
-
-    .icon:nth-child(4) {
-      animation: fadeIn 0.5s ease-out 0.8s forwards;
-    }
-
-    .icon:nth-child(5) {
-      animation: fadeIn 0.5s ease-out 1s forwards;
-    }
-
-    .icon:nth-child(6) {
-      animation: fadeIn 0.5s ease-out 1.2s forwards;
-    }
-
-    .icon:nth-child(7) {
-      animation: fadeIn 0.5s ease-out 1.4s forwards;
-    }
-
-    .icon:nth-child(8) {
-      animation: fadeIn 0.5s ease-out 1.6s forwards;
-    }
-
-    .icon:nth-child(9) {
-      animation: fadeIn 0.5s ease-out 1.8s forwards;
-    }
-
-    .icon:nth-child(10) {
-      animation: fadeIn 0.5s ease-out 2s forwards;
-    }
-
-    .icon:nth-child(11) {
-      animation: fadeIn 0.5s ease-out 2.2s forwards;
-    }
-
-    .icon:nth-child(12) {
-      animation: fadeIn 0.5s ease-out 2.4s forwards;
-    }
-
-    .icon:nth-child(13) {
-      animation: fadeIn 0.5s ease-out 2.6s forwards;
-    }
-
-    .icon:nth-child(14) {
-      animation: fadeIn 0.5s ease-out 2.8s forwards;
-    }
-
-    .icon:nth-child(15) {
-      animation: fadeIn 0.5s ease-out 3s forwards;
-    }
-
-    .icon:nth-child(16) {
-      animation: fadeIn 0.5s ease-out 3.2s forwards;
-    }
-
-    .icon:nth-child(17) {
-      animation: fadeIn 0.5s ease-out 3.4s forwards;
-    }
-
-    .icon:nth-child(18) {
-      animation: fadeIn 0.5s ease-out 3.6s forwards;
-    }
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-black bg-linear-to-t from-orange-950 via-black to-black flex flex-col ">
@@ -185,75 +101,68 @@
           class="icon opacity-0 h-8 w-8 md:h-10 md:w-10 drop-shadow-[0_0_10px_#000000] hover:scale-110 transition-all duration-300">
       </div>
     </div>
-    <div class="flex flex-col md:flex-row justify-between p-8 mt-2 gap-16 items-start">
-      <div>
-        <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Experiência Profissional</h2>
-            <div id="cargo-description" class="text-lg text-gray-300">
-              <p class="text-lg font-semibold text-white">Auxiliar administrativo | Sampa Motors LTDA | 10/2024 - Atualmente
-              </p>
-              <ul class="list-disc pl-6">
-                <li>Apoio nas rotinas administrativas gerais, como controle de documentos e elaboração de relatórios;</li>
-                <li>Organização e gestão de arquivos físicos e digitais, garantindo a atualização e acessibilidade de
-                  informações importantes;</li>
-                <li>Responsável pela realização de processos de RO, onde efetuo a solicitação e a devolução de itens com
-                  problemas;</li>
-                <li>Participação na otimização de processos internos para garantir maior eficiência nas operações diárias.
-                </li>
-              </ul>
-              <p>Busco contribuir com habilidades organizacionais e de gestão para fortalecer o ambiente administrativo e
-                garantir o bom funcionamento da empresa.</p>
-              <br>
-              <p class="text-lg font-semibold text-white">Técnico de TI - Estágio | Strong Tech Ltda | 02/2023 - 06/2023</p>
-              <ul class="list-disc pl-6 text-gray-300">
-                <li>Iniciei como Técnico de Montagem e Teste de Computadores, sendo responsável pela montagem e teste de
-                  equipamentos;</li>
-                <li>Promovido a Técnico na Devolução, onde lidava com processos de devolução, análise de garantias e envio
-                  de produtos para manutenção ou expedição;</li>
-                <li>Participei do desenvolvimento do site institucional da empresa, utilizando HTML5, CSS3 e JavaScript.
-                </li>
-              </ul>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-8">
+     <!-- experiencia -->
+      <div class="bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Experiência Profissional</h2>
+        <div id="cargo-description" class="text-lg text-gray-300">
+          <p class="text-lg font-semibold text-white">Auxiliar administrativo | Sampa Motors LTDA | 10/2024 - Atualmente</p>
+          <ul class="list-disc pl-6">
+            <li>Apoio nas rotinas administrativas gerais, como controle de documentos e elaboração de relatórios;</li>
+            <li>Organização e gestão de arquivos físicos e digitais, garantindo a atualização e acessibilidade de informações importantes;</li>
+            <li>Responsável pela realização de processos de RO, onde efetuo a solicitação e a devolução de itens com problemas;</li>
+            <li>Participação na otimização de processos internos para garantir maior eficiência nas operações diárias.</li>
+          </ul>
+          <br>
+          <p class="text-lg font-semibold text-white">Técnico de TI - Estágio | Strong Tech Ltda | 02/2023 - 06/2023</p>
+          <ul class="list-disc pl-6 text-gray-300">
+            <li>Iniciei como Técnico de Montagem e Teste de Computadores, sendo responsável pela montagem e teste de equipamentos;</li>
+            <li>Promovido a Técnico na Devolução, onde lidava com processos de devolução, análise de garantias e envio de produtos para manutenção ou expedição;</li>
+            <li>Participei do desenvolvimento do site institucional da empresa, utilizando HTML5, CSS3 e JavaScript.</li>
+          </ul>
         </div>
-            <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-4">
-              <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Certificados</h2>
-              <p class="text-gray-300 mb-4">Voce pode acessar os Certificados cliacando no link abaixo</p>
-              <a href="certificados.html">Certificados</a>
-            </div>
       </div>
-        <div class="flex flex-col">
-          <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Educação</h2>
-            <div class="mb-4">
-              <p class="text-lg font-semibold">Bacharelado em Engenharia da Computação</p>
-              <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
-            </div>
-            <div class="mb-4">
-              <p class="text-lg font-semibold">Tecnólogo em Gestão Financeira</p>
-              <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
-            </div>
-            <h3 class="text-2xl font-bold mt-6 mb-4">Certificações</h3>
-            <ul class="list-disc list-inside text-gray-300 space-y-2">
-              <li><span class="font-semibold text-white">Especialista em Arquitetura e Organização de Computadores</span>
-                — Faculdade Descomplica</li>
-              <li><span class="font-semibold text-white">Programming Basics</span> — Faculdade Descomplica</li>
-              <li><span class="font-semibold text-white">Object-Oriented Developer</span> — Faculdade Descomplica</li>
-              <li><span class="font-semibold text-white">DB Developer</span> — Faculdade Descomplica</li>
-              <li><span class="font-semibold text-white">Mobile Developer</span> — Faculdade Descomplica</li>
-              <li><span class="font-semibold text-white">Smart Data Structures</span> — Faculdade Descomplica</li>
-              <li><span class="font-semibold text-white">HTML5 e CSS3 Avançado</span> — Alura</li>
-              <li><span class="font-semibold text-white">JavaScript Básico</span> — Alura</li>
-              <li><span class="font-semibold text-white">Git e GitHub</span> — Alura</li>
-            </ul>
-          </div>
-          <div class="flex-1 bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg mt-14">
-            <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Idiomas</h2>
-            <p class="text-gray-300">Ingles - Wizard W6 - B2 CEFR<br></p>
-            <p class="text-gray-300">Espanhol - Autodidata - A2 CEFR</p>
-          </div>
+    <!-- Educaçao -->
+      <div class="bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Educação</h2>
+        <div class="mb-4">
+          <p class="text-lg font-semibold">Bacharelado em Engenharia da Computação</p>
+          <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
         </div>
+        <div class="mb-4">
+          <p class="text-lg font-semibold">Tecnólogo em Gestão Financeira</p>
+          <p class="text-gray-300">Previsão de conclusão no 2º Semestre de 2026</p>
+        </div>
+        <h3 class="text-2xl font-bold mt-6 mb-4">Certificações</h3>
+        <ul class="list-disc list-inside text-gray-300 space-y-2">
+          <li><span class="font-semibold text-white">Especialista em Arquitetura e Organização de Computadores</span> — Faculdade Descomplica</li>
+          <li><span class="font-semibold text-white">Programming Basics</span> — Faculdade Descomplica</li>
+          <li><span class="font-semibold text-white">Object-Oriented Developer</span> — Faculdade Descomplica</li>
+          <li><span class="font-semibold text-white">DB Developer</span> — Faculdade Descomplica</li>
+          <li><span class="font-semibold text-white">Mobile Developer</span> — Faculdade Descomplica</li>
+          <li><span class="font-semibold text-white">Smart Data Structures</span> — Faculdade Descomplica</li>
+          <li><span class="font-semibold text-white">HTML5 e CSS3 Avançado</span> — Alura</li>
+          <li><span class="font-semibold text-white">JavaScript Básico</span> — Alura</li>
+          <li><span class="font-semibold text-white">Git e GitHub</span> — Alura</li>
+        </ul>
+      </div>
+    
+   <!-- certificados -->
+      <div class="bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Certificados</h2>
+        <p class="text-gray-300 mb-4">Você pode acessar os Certificados clicando no link abaixo</p>
+        <a href="certificados.html" class="bg-orange-700 p-4 rounded-full drop-shadow-[0_0_10px_#D13800] text-black hover:scale-110 transition-all duration-300 ease-in-out block w-30">Certificados</a>
+      </div>
+    
+<!-- idiomas -->
+      <div class="bg-black border-2 border-orange-400 text-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold mb-4 font-[JetBrains_mono]">Idiomas</h2>
+        <p class="text-gray-300">Inglês - Wizard W6 - B2 CEFR</p>
+        <p class="text-gray-300">Espanhol - Autodidata - A2 CEFR</p>
       </div>
     </div>
+
+    
   </main>
   <div class="flex-grow"></div>
   <footer class="flex flex-col items-center justify-center bg-black py-4 relative inset-x-0 bottom-0">
@@ -267,7 +176,7 @@
         </svg>
       </div>
     </div>
-    <p class="text-white text-sm font-[JetBrains_Mono] mt-2">© 2025 Gabriel Bustus. Todos os direitos reservados.</p>
+    <p class="text-white text-center text-sm font-[JetBrains_Mono] mt-2">© 2025 Gabriel Bustus. Todos os direitos reservados.</p>
   </footer>
   <script src="script.js"></script>
 </body>

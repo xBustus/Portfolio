@@ -12,3 +12,102 @@
     visibility: visible; /* Visível no DOM */
     transition: max-height 1s ease-in-out, opacity 1s ease-in-out; /* Transições para animação */
 }
+
+
+/* Atributos 3d */
+.particle-3d {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que o conteúdo se ajuste sem deformação */
+    box-sizing: border-box; /* Inclui bordas e preenchimentos no tamanho */
+    z-index: -1; /* Garante que o visualizador fique atrás de outros elementos */
+}
+
+/* Style cv.html */
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .icon:nth-child(1) {
+    animation: fadeIn 0.5s ease-out 0.2s forwards;
+  }
+
+  .icon:nth-child(2) {
+    animation: fadeIn 0.5s ease-out 0.4s forwards;
+  }
+
+  .icon:nth-child(3) {
+    animation: fadeIn 0.5s ease-out 0.6s forwards;
+  }
+
+  .icon:nth-child(4) {
+    animation: fadeIn 0.5s ease-out 0.8s forwards;
+  }
+
+  .icon:nth-child(5) {
+    animation: fadeIn 0.5s ease-out 1s forwards;
+  }
+
+  .icon:nth-child(6) {
+    animation: fadeIn 0.5s ease-out 1.2s forwards;
+  }
+
+  .icon:nth-child(7) {
+    animation: fadeIn 0.5s ease-out 1.4s forwards;
+  }
+
+  .icon:nth-child(8) {
+    animation: fadeIn 0.5s ease-out 1.6s forwards;
+  }
+
+  .icon:nth-child(9) {
+    animation: fadeIn 0.5s ease-out 1.8s forwards;
+  }
+
+  .icon:nth-child(10) {
+    animation: fadeIn 0.5s ease-out 2s forwards;
+  }
+
+  .icon:nth-child(11) {
+    animation: fadeIn 0.5s ease-out 2.2s forwards;
+  }
+
+  .icon:nth-child(12) {
+    animation: fadeIn 0.5s ease-out 2.4s forwards;
+  }
+
+  .icon:nth-child(13) {
+    animation: fadeIn 0.5s ease-out 2.6s forwards;
+  }
+
+  .icon:nth-child(14) {
+    animation: fadeIn 0.5s ease-out 2.8s forwards;
+  }
+
+  .icon:nth-child(15) {
+    animation: fadeIn 0.5s ease-out 3s forwards;
+  }
+
+  .icon:nth-child(16) {
+    animation: fadeIn 0.5s ease-out 3.2s forwards;
+  }
+
+  .icon:nth-child(17) {
+    animation: fadeIn 0.5s ease-out 3.4s forwards;
+  }
+
+  .icon:nth-child(18) {
+    animation: fadeIn 0.5s ease-out 3.6s forwards;
+  }
