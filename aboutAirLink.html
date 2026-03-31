@@ -1,104 +1,323 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Página Não Encontrada</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>AirLink - Plataforma de Links</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #111;
-      color: #fff;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .container {
-      text-align: center;
-      padding: 30px;
-      background-color: #222;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 1s ease-out;
-    }
-
-    h1 {
-      font-size: 8rem;
-      color: #e67e22;
-      margin: 0;
-      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-      animation: bounce 1s infinite alternate;
-    }
-
-    p {
-      font-size: 1.25rem;
-      color: #bbb;
-      margin-top: 10px;
-      animation: fadeInText 1.5s ease-out;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 14px 28px;
-      background-color: #e67e22;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    a:hover {
-      transform: scale(1.1);
-      background-color: #d35400;
-    }
-
-    @keyframes bounce {
-      0% {
-        transform: translateY(0);
-      }
-
-      100% {
-        transform: translateY(-20px);
-      }
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeInText {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
+    #phone-screen { transition: all 0.5s ease; }
+    .link-btn { transition: all 0.3s ease; }
   </style>
 </head>
+<body class="bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300 antialiased">
 
-<body>
-  <div class="container">
-    <h1>404</h1>
-    <p>A página que você está procurando não foi encontrada ou está em manutenção.</p>
-    <a href="index.html">Voltar para a página inicial</a>
-  </div>
+  <nav class="fixed w-full bg-white/90 dark:bg-slate-950/90 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a href="index.html" class="flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-opacity">
+          <div class="bg-indigo-600 text-white p-1.5 rounded-lg font-bold transition-transform group-hover:scale-110">
+            <i data-lucide="link-2" class="w-5 h-5"></i>
+          </div>
+          <span class="font-black text-slate-800 dark:text-white tracking-tighter text-2xl transition-all">AirLink</span>
+        </a>
+        
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#features" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors">Recursos</a>
+          <a href="#demo" class="text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors">Testar Demo</a>
+          
+          <button id="theme-toggle" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all active:scale-90 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+            <i data-lucide="moon" id="theme-icon" class="w-5 h-5"></i>
+          </button>
+
+          <a href="index.html" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white px-5 py-3 rounded-full font-bold transition-all text-sm">
+            Voltar ao CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-indigo-50 to-white dark:from-slate-900 dark:to-slate-950 transition-all duration-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="z-10 animate-[fadeIn_1s_ease-out]">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-sm font-bold mb-8 shadow-sm">
+            <i data-lucide="github" class="w-4 h-4"></i> Open-Source & 100% Gratuito
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-black tracking-tighter leading-[0.9] mb-8 text-slate-900 dark:text-white">
+            Todos os seus links em <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500 dark:from-indigo-400 dark:to-purple-300">um só lugar.</span>
+          </h1>
+          <p class="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-xl leading-relaxed font-medium">
+            O AirLink é uma plataforma open-source para criação de páginas personalizadas. Agrupe suas redes, portfólios e contatos de forma prática, sem custos e sem complicações.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-5">
+            <a href="#demo" class="flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-xl shadow-indigo-600/20 active:scale-95">
+              Personalizar Agora <i data-lucide="palette" class="w-5 h-5"></i>
+            </a>
+            <a href="https://github.com/xbustus" target="_blank" class="flex items-center justify-center gap-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 px-10 py-5 rounded-2xl font-bold text-lg transition-all active:scale-95 shadow-sm">
+              <i data-lucide="code" class="w-5 h-5"></i> Ver Código
+            </a>
+          </div>
+        </div>
+
+        <div class="relative z-10 hidden lg:flex justify-center animate-[fadeIn_1s_ease-out]">
+          <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-purple-400/20 dark:from-indigo-500/10 dark:to-purple-400/5 rounded-full blur-3xl transform scale-150 -z-10"></div>
+          
+          <div class="w-[300px] h-[600px] bg-slate-900 rounded-[3rem] border-[10px] border-slate-800 shadow-2xl overflow-hidden relative transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+            <div class="absolute top-0 inset-x-0 h-6 bg-slate-800 rounded-b-xl w-32 mx-auto z-20"></div>
+            
+            <div class="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 p-6 flex flex-col items-center pt-16">
+              <div class="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full mb-4 p-1">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Gabriel" alt="Avatar" class="w-full h-full rounded-full bg-slate-200">
+              </div>
+              <h3 class="text-white font-bold text-xl mb-1">@gabriel.lima</h3>
+              <p class="text-indigo-100 text-sm mb-8">Dev FullStack & Engineer</p>
+              
+              <div class="w-full space-y-3">
+                <div class="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white py-3 rounded-xl flex items-center justify-center gap-2 font-medium text-sm transition-colors cursor-pointer border border-white/10">
+                  <i data-lucide="github" class="w-4 h-4"></i> Meu GitHub
+                </div>
+                <div class="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white py-3 rounded-xl flex items-center justify-center gap-2 font-medium text-sm transition-colors cursor-pointer border border-white/10">
+                  <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                </div>
+                <div class="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white py-3 rounded-xl flex items-center justify-center gap-2 font-medium text-sm transition-colors cursor-pointer border border-white/10">
+                  <i data-lucide="briefcase" class="w-4 h-4"></i> Portfólio VEXIA
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-24 bg-white dark:bg-slate-950 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-widest text-sm mb-4">Destaques da Plataforma</h2>
+        <h3 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter">SIMPLES, RÁPIDO E SEU.</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mb-6 text-green-600 dark:text-green-400">
+            <i data-lucide="wallet" class="w-7 h-7"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Totalmente Gratuito</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Sem planos premium escondidos, sem custos ou limitações para criar e compartilhar suas páginas de links.</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 dark:text-indigo-400">
+            <i data-lucide="paint-roller" class="w-7 h-7"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Alta Personalização</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Customize cores, botões, fontes e fundos com facilidade para que a página tenha exatamente a sua identidade.</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
+            <i data-lucide="mouse-pointer-click" class="w-7 h-7"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Experiência Simples</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Interface limpa e intuitiva. Feito para que qualquer pessoa, de iniciantes a desenvolvedores avançados, possa usar.</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-2xl flex items-center justify-center mb-6 text-orange-600 dark:text-orange-400">
+            <i data-lucide="zap" class="w-7 h-7"></i>
+          </div>
+          <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Acesso Instantâneo</h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Compartilhe seus links rapidamente em qualquer rede social, sem necessidade de instalações ou configurações complexas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" class="py-24 bg-slate-100 dark:bg-slate-900 transition-all duration-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white dark:bg-slate-950 rounded-[3rem] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        
+        <div class="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center border-r border-slate-100 dark:border-slate-800">
+          <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-2">Construtor de Temas</h3>
+          <p class="text-slate-500 mb-8">O AirLink permite que o usuário crie sua própria identidade visual. Teste a engine de customização abaixo:</p>
+          
+          <div class="space-y-6">
+            <div>
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 block">Escolha o Estilo</label>
+              <div class="grid grid-cols-2 gap-3">
+                <button onclick="setTheme('modern')" class="py-3 px-4 rounded-xl border-2 border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-400 font-bold text-sm transition-all focus:outline-none theme-btn" id="btn-modern">Gradient Modern</button>
+                <button onclick="setTheme('dark')" class="py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-all focus:outline-none theme-btn" id="btn-dark">Minimal Dark</button>
+                <button onclick="setTheme('light')" class="py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-all focus:outline-none theme-btn" id="btn-light">Clean Light</button>
+                <button onclick="setTheme('hacker')" class="py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-all focus:outline-none theme-btn" id="btn-hacker">Terminal Neon</button>
+              </div>
+            </div>
+            
+            <div class="bg-indigo-50 dark:bg-indigo-900/10 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/30">
+              <p class="text-sm text-indigo-800 dark:text-indigo-300 font-medium">
+                <i data-lucide="info" class="w-4 h-4 inline mr-1 -mt-0.5"></i>
+                No AirLink real, o usuário pode configurar cores hexadecimais, fotos de fundo, efeitos nos botões e gerenciar os links via painel administrativo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 bg-slate-50 dark:bg-slate-900 p-10 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTU2LCAxNjMsIDE3NSwgMC4xKSIvPjwvc3ZnPg==')]"></div>
+          
+          <div class="w-[280px] h-[580px] bg-black rounded-[3rem] border-[8px] border-slate-800 shadow-2xl relative z-10 overflow-hidden flex flex-col">
+            <div id="phone-screen" class="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 p-6 flex flex-col items-center pt-12 relative">
+              
+              <div id="phone-avatar-border" class="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full mb-3 p-1 transition-colors duration-500">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AirLink" alt="Avatar" class="w-full h-full rounded-full bg-white">
+              </div>
+              
+              <h3 id="phone-name" class="text-white font-bold text-xl mb-1 transition-colors duration-500">Meu Portfólio</h3>
+              <p id="phone-bio" class="text-indigo-100 text-sm mb-6 transition-colors duration-500">Desenvolvedor & Criador</p>
+              
+              <div class="w-full space-y-3">
+                <button class="link-btn w-full bg-white/20 hover:bg-white/30 text-white py-3.5 rounded-xl font-medium text-sm border border-white/10 shadow-sm flex items-center justify-center gap-2">
+                  <i data-lucide="globe" class="w-4 h-4"></i> Meu Website
+                </button>
+                <button class="link-btn w-full bg-white/20 hover:bg-white/30 text-white py-3.5 rounded-xl font-medium text-sm border border-white/10 shadow-sm flex items-center justify-center gap-2">
+                  <i data-lucide="youtube" class="w-4 h-4"></i> Canal do Youtube
+                </button>
+                <button class="link-btn w-full bg-white/20 hover:bg-white/30 text-white py-3.5 rounded-xl font-medium text-sm border border-white/10 shadow-sm flex items-center justify-center gap-2">
+                  <i data-lucide="mail" class="w-4 h-4"></i> Fale Comigo
+                </button>
+              </div>
+
+              <div class="mt-auto pt-8 pb-2 flex items-center justify-center gap-1 opacity-60">
+                <i data-lucide="link-2" id="phone-logo" class="w-3 h-3 text-white"></i>
+                <span id="phone-watermark" class="text-white text-xs font-bold">AirLink</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-950 text-slate-600 py-16 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="flex items-center justify-center gap-2 mb-8 group cursor-pointer">
+        <div class="bg-indigo-600/20 text-indigo-500 p-2 rounded-lg font-bold transition-transform group-hover:scale-110">
+          <i data-lucide="link-2" class="w-5 h-5"></i>
+        </div>
+        <span class="font-black text-white tracking-tighter text-2xl">AirLink</span>
+      </div>
+      <p class="text-sm font-bold uppercase tracking-widest opacity-40">Plataforma Open-Source.</p>
+    </div>
+  </footer>
+
+  <script>
+    
+    lucide.createIcons();
+
+  
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+      themeIcon.setAttribute('data-lucide', 'sun');
+    } else {
+      themeIcon.setAttribute('data-lucide', 'moon');
+    }
+    lucide.createIcons();
+
+    themeBtn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      if (html.classList.contains('dark')) {
+        localStorage.theme = 'dark';
+        themeIcon.setAttribute('data-lucide', 'sun');
+      } else {
+        localStorage.theme = 'light';
+        themeIcon.setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    });
+
+ 
+    const themes = {
+      modern: {
+        bg: 'bg-gradient-to-br from-indigo-500 to-purple-600',
+        name: 'text-white',
+        bio: 'text-indigo-100',
+        btn: 'bg-white/20 hover:bg-white/30 text-white border-white/10 rounded-xl',
+        watermark: 'text-white',
+        avatarBorder: 'bg-white/20'
+      },
+      dark: {
+        bg: 'bg-slate-900',
+        name: 'text-slate-100',
+        bio: 'text-slate-400',
+        btn: 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700 rounded-lg',
+        watermark: 'text-slate-500',
+        avatarBorder: 'bg-slate-800'
+      },
+      light: {
+        bg: 'bg-slate-100',
+        name: 'text-slate-900',
+        bio: 'text-slate-500',
+        btn: 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 rounded-full shadow-md',
+        watermark: 'text-slate-400',
+        avatarBorder: 'bg-white shadow-sm'
+      },
+      hacker: {
+        bg: 'bg-black',
+        name: 'text-green-400 font-mono',
+        bio: 'text-green-600 font-mono',
+        btn: 'bg-transparent hover:bg-green-900/30 text-green-400 border-green-500 rounded-none border-2 font-mono',
+        watermark: 'text-green-700 font-mono',
+        avatarBorder: 'bg-green-500/20 border border-green-500'
+      }
+    };
+
+    function setTheme(themeKey) {
+    
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'dark:bg-indigo-900/20', 'text-indigo-700', 'dark:text-indigo-400');
+        btn.classList.add('border-slate-200', 'dark:border-slate-700', 'text-slate-700', 'dark:text-slate-300');
+      });
+      const activeBtn = document.getElementById(`btn-${themeKey}`);
+      activeBtn.classList.remove('border-slate-200', 'dark:border-slate-700', 'text-slate-700', 'dark:text-slate-300');
+      activeBtn.classList.add('border-indigo-600', 'bg-indigo-50', 'dark:bg-indigo-900/20', 'text-indigo-700', 'dark:text-indigo-400');
+
+    
+      const t = themes[themeKey];
+      
+      const screen = document.getElementById('phone-screen');
+      screen.className = `w-full h-full p-6 flex flex-col items-center pt-12 relative transition-all duration-500 ${t.bg}`;
+      
+      document.getElementById('phone-name').className = `font-bold text-xl mb-1 transition-colors duration-500 ${t.name}`;
+      document.getElementById('phone-bio').className = `text-sm mb-6 transition-colors duration-500 ${t.bio}`;
+      
+      const avatarBorder = document.getElementById('phone-avatar-border');
+      avatarBorder.className = `w-24 h-24 backdrop-blur-md rounded-full mb-3 p-1 transition-all duration-500 ${t.avatarBorder}`;
+
+      document.querySelectorAll('.link-btn').forEach(btn => {
+        btn.className = `link-btn w-full py-3.5 font-medium text-sm shadow-sm flex items-center justify-center gap-2 border ${t.btn}`;
+      });
+
+      document.getElementById('phone-watermark').className = `text-xs font-bold transition-colors duration-500 ${t.watermark}`;
+      document.getElementById('phone-logo').className = `w-3 h-3 transition-colors duration-500 ${t.watermark}`;
+    }
+  </script>
 </body>
-
 </html>
