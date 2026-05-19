@@ -49,3 +49,15 @@ document.querySelectorAll('.aboutSwitch2').forEach(button => {
         aboutSwitch2(current, 'show', 'hidden')
     });
 });
+
+// E-mail ofuscado — monta o mailto em runtime para evitar scraping
+(function setupEmailLink() {
+    const emailLink = document.getElementById('emailLink');
+    if (!emailLink) return;
+    const user = ['i','d','5','8','6','1','7','3','b','i','e','l'].join('');
+    const domain = 'gmail' + '.' + 'com';
+    emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'mailto:' + user + '@' + domain;
+    });
+})();

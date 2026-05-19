@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="assets/Profile-Picture.ico" type="image/x-icon" />
+<title>Vexia — Contato</title>
+<meta name="description" content="Fale com o time Vexia — vendas, suporte, parcerias e imprensa." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #020617; }
+  .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); }
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #8b5cf6 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .card-hover:hover { transform: translateY(-4px); border-color: rgba(59,130,246,0.4); }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4);
+    font-weight: 600; font-size: 14px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body class="text-slate-200 antialiased overflow-x-hidden">
+
+<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/60">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="aboutVexia.html" class="flex items-center gap-2 group">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+        <i data-lucide="truck" class="w-5 h-5 text-white"></i>
+      </div>
+      <span class="text-xl font-bold tracking-tight">Vexia</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="hidden sm:inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-white transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Portfólio
+      </a>
+      <a href="aboutVexia.html" class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+        Voltar ao site
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main class="pt-32 pb-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Contato</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-5">Vamos <span class="gradient-text">conversar.</span></h1>
+      <p class="text-slate-400 text-lg">Escolha o canal mais adequado abaixo ou envie sua mensagem pelo formulário.</p>
+    </div>
+
+    <!-- Canais -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+      <a data-mail="vendas" class="vexia-mail bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover block cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="briefcase" class="w-5 h-5 text-blue-400"></i>
+        </div>
+        <h3 class="font-bold mb-1">Vendas</h3>
+        <p class="text-xs text-slate-400 mb-3">Demonstrações, propostas e novos contratos.</p>
+        <span class="text-xs text-blue-400 inline-flex items-center gap-1">
+          <i data-lucide="mail" class="w-3 h-3"></i> Enviar e-mail
+        </span>
+      </a>
+      <a data-mail="suporte" class="vexia-mail bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover block cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="life-buoy" class="w-5 h-5 text-emerald-400"></i>
+        </div>
+        <h3 class="font-bold mb-1">Suporte</h3>
+        <p class="text-xs text-slate-400 mb-3">Para clientes ativos. Resposta em até 4h úteis.</p>
+        <span class="text-xs text-emerald-400 inline-flex items-center gap-1">
+          <i data-lucide="mail" class="w-3 h-3"></i> Enviar e-mail
+        </span>
+      </a>
+      <a data-mail="parcerias" class="vexia-mail bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover block cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="handshake" class="w-5 h-5 text-violet-400"></i>
+        </div>
+        <h3 class="font-bold mb-1">Parcerias</h3>
+        <p class="text-xs text-slate-400 mb-3">Integrações, revenda e parcerias técnicas.</p>
+        <span class="text-xs text-violet-400 inline-flex items-center gap-1">
+          <i data-lucide="mail" class="w-3 h-3"></i> Enviar e-mail
+        </span>
+      </a>
+      <a data-mail="imprensa" class="vexia-mail bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover block cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="newspaper" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <h3 class="font-bold mb-1">Imprensa</h3>
+        <p class="text-xs text-slate-400 mb-3">Reportagens, entrevistas e kit de mídia.</p>
+        <span class="text-xs text-amber-400 inline-flex items-center gap-1">
+          <i data-lucide="mail" class="w-3 h-3"></i> Enviar e-mail
+        </span>
+      </a>
+    </div>
+
+    <!-- Form -->
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-slate-900/80 border border-slate-700/60 rounded-3xl p-8 md:p-10 backdrop-blur shadow-2xl">
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-2">Envie uma mensagem</h2>
+        <p class="text-slate-400 text-sm mb-8">Respondemos em até 1 dia útil.</p>
+
+        <form id="contactForm" class="grid md:grid-cols-2 gap-4">
+          <label class="sr-only" for="ct-nome">Nome</label>
+          <input id="ct-nome" required type="text" placeholder="Nome"
+            class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+          <label class="sr-only" for="ct-empresa">Empresa</label>
+          <input id="ct-empresa" type="text" placeholder="Empresa (opcional)"
+            class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+          <label class="sr-only" for="ct-email">E-mail</label>
+          <input id="ct-email" required type="email" placeholder="E-mail"
+            class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+          <label class="sr-only" for="ct-tel">Telefone</label>
+          <input id="ct-tel" type="tel" placeholder="Telefone (opcional)"
+            class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+          <label class="sr-only" for="ct-assunto">Assunto</label>
+          <select id="ct-assunto" required
+            class="md:col-span-2 bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+            <option value="">Selecione o assunto...</option>
+            <option>Quero conhecer o Vexia (vendas)</option>
+            <option>Sou cliente e preciso de suporte</option>
+            <option>Proposta de parceria</option>
+            <option>Solicitação de imprensa</option>
+            <option>Privacidade / LGPD</option>
+            <option>Outro</option>
+          </select>
+          <label class="sr-only" for="ct-msg">Mensagem</label>
+          <textarea id="ct-msg" required rows="5" placeholder="Sua mensagem"
+            class="md:col-span-2 bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"></textarea>
+          <button type="submit"
+            class="md:col-span-2 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-xl font-semibold transition shadow-xl shadow-blue-600/30">
+            Enviar mensagem
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </form>
+
+        <div id="contactSuccess" class="hidden mt-6 items-center gap-3 bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 rounded-xl px-5 py-4">
+          <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+          <span class="text-sm">Mensagem recebida. Retornamos em até 1 dia útil.</span>
+        </div>
+      </div>
+
+      <!-- Sidebar info -->
+      <aside class="space-y-4">
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i>
+            <h3 class="font-bold text-sm">Endereço</h3>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">São Paulo — SP<br>Brasil</p>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="clock" class="w-4 h-4 text-emerald-400"></i>
+            <h3 class="font-bold text-sm">Horário</h3>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">Segunda a sexta<br>09h às 18h (BRT)</p>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="message-circle" class="w-4 h-4 text-violet-400"></i>
+            <h3 class="font-bold text-sm">WhatsApp comercial</h3>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">Em breve disponível.</p>
+        </div>
+        <div class="bg-gradient-to-br from-blue-600/20 to-violet-600/10 border border-blue-500/30 rounded-2xl p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="zap" class="w-4 h-4 text-blue-300"></i>
+            <h3 class="font-bold text-sm">Quer ver em ação?</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">Agende uma demonstração de 30 minutos com nosso time.</p>
+          <a href="aboutVexia.html#contato" class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-300 hover:text-white transition">
+            Agendar demo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="border-t border-slate-800/60 py-10 text-sm text-slate-500">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-md bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+        <i data-lucide="truck" class="w-4 h-4 text-white"></i>
+      </div>
+      <span class="font-bold text-slate-300">Vexia</span>
+      <span>· Plataforma de gestão para coleta urbana</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="index.html" class="hover:text-white transition">Portfólio</a>
+      <a href="vexiaPrivacidade.html" class="hover:text-white transition">Privacidade</a>
+      <a href="vexiaTermos.html" class="hover:text-white transition">Termos</a>
+      <a href="vexiaContato.html" class="hover:text-white transition">Contato</a>
+    </div>
+    <div>© <span id="year"></span> Vexia. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function showToast(message) {
+    let toast = document.getElementById('toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className = 'toast';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ${message}`;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // Ofuscação de e-mail — monta o mailto em runtime para evitar scraping
+  (function setupMailLinks() {
+    const user = ['i','d','5','8','6','1','7','3','b','i','e','l'].join('');
+    const domain = 'gmail' + '.' + 'com';
+    const address = user + '@' + domain;
+    const subjects = {
+      vendas:    'Vexia — Vendas e demonstração',
+      suporte:   'Vexia — Suporte',
+      parcerias: 'Vexia — Parcerias',
+      imprensa:  'Vexia — Imprensa',
+    };
+    document.querySelectorAll('.vexia-mail').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = el.getAttribute('data-mail');
+        const subject = encodeURIComponent(subjects[key] || 'Vexia');
+        window.location.href = `mailto:${address}?subject=${subject}`;
+      });
+    });
+  })();
+
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('contactSuccess');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.reset();
+    success.classList.remove('hidden');
+    success.classList.add('flex');
+    lucide.createIcons();
+    showToast('Mensagem enviada!');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+</body>
+</html>

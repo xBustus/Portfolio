@@ -1,337 +1,740 @@
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VEXIA - Gestão de Frotas</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="assets/Profile-Picture.ico" type="image/x-icon" />
+<title>Vexia — Plataforma inteligente para gestão de coleta urbana e frotas</title>
+<meta name="description" content="Vexia é a plataforma all-in-one para empresas de coleta urbana: roteirização inteligente, frota ao vivo, oficina, fiscalização, eco pontos, IA operacional e geração automática dos documentos exigidos pela prefeitura." />
+<meta property="og:title" content="Vexia — Plataforma inteligente para coleta urbana" />
+<meta property="og:description" content="Frota ao vivo, roteirização, oficina e IA operacional em uma só plataforma." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        colors: {
+          brand: {
+            50:  '#eff6ff',
+            500: '#3b82f6',
+            600: '#2563eb',
+            700: '#1d4ed8',
+          }
+        },
+        animation: {
+          'fade-up':   'fadeUp 0.7s ease-out both',
+          'pulse-slow':'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite',
+          'float':     'float 6s ease-in-out infinite',
+          'glow':      'glow 3s ease-in-out infinite',
+        },
+        keyframes: {
+          fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          float:  { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+          glow:   { '0%,100%': { boxShadow: '0 0 30px -10px rgba(59,130,246,0.5)' }, '50%': { boxShadow: '0 0 50px -5px rgba(59,130,246,0.8)' } },
         }
       }
     }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    .module-card-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      opacity: 0;
-      margin-top: 0;
-      transition: grid-template-rows 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, margin 0.5s ease;
-    }
-    .module-card.active .module-card-content {
-      grid-template-rows: 1fr;
-      opacity: 1;
-      margin-top: 1rem;
-    }
-    .module-card-inner {
-      overflow: hidden;
-      min-height: 0;
-    }
-  </style>
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #020617; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .card-hover:hover { transform: translateY(-4px); border-color: rgba(59,130,246,0.4); }
+  .glass {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  details[open] summary .chev { transform: rotate(180deg); }
+  .chev { transition: transform 0.2s ease; }
+
+  /* Mapa Leaflet — tema escuro integrado */
+  #fleetMap {
+    width: 100%;
+    height: 100%;
+    background: #0f172a;
+    z-index: 0;
+  }
+  #fleetMap .leaflet-control-attribution {
+    background: rgba(15, 23, 42, 0.7);
+    color: #64748b;
+    font-size: 9px;
+  }
+  #fleetMap .leaflet-control-attribution a { color: #94a3b8; }
+  #fleetMap .leaflet-control-zoom a {
+    background: rgba(30, 41, 59, 0.9);
+    color: #e2e8f0;
+    border-color: rgba(71, 85, 105, 0.5);
+  }
+  #fleetMap .leaflet-control-zoom a:hover { background: rgba(51, 65, 85, 0.95); }
+  .vexia-pin {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.9);
+    box-shadow: 0 0 0 4px var(--ring), 0 0 12px var(--ring);
+  }
+  .vexia-pin.pulse::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: var(--ring);
+    opacity: 0.35;
+    animation: vexia-ping 1.6s cubic-bezier(0,0,0.2,1) infinite;
+  }
+  @keyframes vexia-ping {
+    0%   { transform: scale(0.6); opacity: 0.5; }
+    80%, 100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4);
+    font-weight: 600;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300 antialiased">
+<body class="text-slate-200 antialiased overflow-x-hidden">
 
-  <nav class="fixed w-full bg-white/90 dark:bg-slate-950/90 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <a href="index.html" class="flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-opacity">
-          <div class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-1.5 rounded-lg font-bold text-xs transition-transform group-hover:scale-110">VX</div>
-          <span class="font-black text-slate-800 dark:text-white tracking-tighter text-2xl transition-all">VEXIA</span>
-        </a>
-        
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="#modulos" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Módulos</a>
-          <a href="#contato" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Contato</a>
-          
-          <button id="theme-toggle" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all active:scale-90 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
-            <i data-lucide="moon" id="theme-icon" class="w-5 h-5"></i>
-          </button>
-
-          <a href="index.html" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white px-5 py-3 rounded-full font-bold transition-all text-sm">
-            Voltar ao CV
-          </a>
-        </div>
+<!-- ============== NAV ============== -->
+<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/60">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 group" aria-label="Vexia — início">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+        <i data-lucide="truck" class="w-5 h-5 text-white"></i>
       </div>
+      <span class="text-xl font-bold tracking-tight">Vexia</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+      <a href="#modulos"   class="hover:text-white transition">Módulos</a>
+      <a href="#como"      class="hover:text-white transition">Como funciona</a>
+      <a href="#personas"  class="hover:text-white transition">Para quem</a>
+      <a href="#planos"    class="hover:text-white transition">Planos</a>
+      <a href="#faq"       class="hover:text-white transition">FAQ</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="hidden sm:inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-white transition">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Portfólio
+      </a>
+      <a href="#contato" class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-lg shadow-blue-600/30">
+        Demonstração
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
     </div>
   </nav>
+</header>
 
-  <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950 dark:to-slate-900 transition-all duration-700">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="z-10 animate-[fadeIn_1s_ease-out]">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-bold mb-8 shadow-sm">
-            <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
-            Plataforma SaaS de Gestão Operacional
-          </div>
-          <h1 class="text-5xl lg:text-7xl font-black tracking-tighter leading-[0.9] mb-8 text-slate-900 dark:text-white uppercase">
-            Gestão para frotas que <br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">movem cidades.</span>
-          </h1>
-          <p class="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-xl leading-relaxed font-medium">
-            Centralize a operação da sua empresa de logística e limpeza urbana. Um sistema 100% Web com tecnologia PWA: leve, rápido e inteligente.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-5">
-            <a href="#modulos" class="flex items-center justify-center gap-3 bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-100 text-white dark:text-slate-900 px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-2xl shadow-slate-900/20 active:scale-95">
-              Conhecer Módulos <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
-          </div>
-          <div class="mt-12 flex flex-wrap items-center gap-8 text-sm text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
-            <div class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500"></i> Implantação Rápida</div>
-            <div class="flex items-center gap-3"><i data-lucide="monitor-smartphone" class="w-5 h-5 text-blue-500"></i> Web & PWA</div>
-          </div>
-        </div>
+<!-- ============== HERO ============== -->
+<section class="relative pt-36 pb-24 overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="absolute top-20 -left-40 w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-40 -right-40 w-[500px] h-[500px] rounded-full bg-violet-600/20 blur-3xl pointer-events-none"></div>
 
-        <div class="relative z-10 hidden lg:block animate-[fadeIn_1s_ease-out]">
-          <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-400/20 dark:from-blue-500/10 dark:to-cyan-400/5 rounded-[3.5rem] transform rotate-3 scale-105 -z-10 blur-2xl"></div>
-          <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Vexia Logística" class="rounded-[3rem] shadow-2xl object-cover h-[650px] w-full border-8 border-white dark:border-slate-800 transition-transform duration-700 hover:scale-[1.01]" />
-        </div>
+  <div class="relative max-w-7xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 border border-slate-700/60 text-xs text-slate-300 mb-6 animate-fade-up">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      Plataforma operacional com IA para coleta urbana e frotas
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 animate-fade-up" style="animation-delay:.1s">
+      A cidade limpa começa com<br>
+      <span class="gradient-text">decisões em tempo real.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay:.2s">
+      Vexia une frota ao vivo, roteirização inteligente, oficina, fiscalização e relatórios em uma só plataforma — para empresas de coleta urbana que não podem errar uma rota nem um documento da prefeitura.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up" style="animation-delay:.3s">
+      <a href="#contato" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-7 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-blue-600/30 animate-glow">
+        Agendar demonstração
+        <i data-lucide="calendar" class="w-4 h-4"></i>
+      </a>
+      <a href="#modulos" class="inline-flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-white px-7 py-3.5 rounded-xl font-semibold transition">
+        Ver a plataforma
+        <i data-lucide="play" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <!-- Métricas -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-up" style="animation-delay:.4s">
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">-32%</div>
+        <div class="text-xs text-slate-400 mt-1">custo de combustível por rota otimizada</div>
+      </div>
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">+45%</div>
+        <div class="text-xs text-slate-400 mt-1">eficiência operacional média</div>
+      </div>
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">100%</div>
+        <div class="text-xs text-slate-400 mt-1">rastreabilidade da frota e equipes</div>
+      </div>
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">24/7</div>
+        <div class="text-xs text-slate-400 mt-1">monitoramento ao vivo da operação</div>
       </div>
     </div>
-  </section>
 
-  <section id="modulos" class="py-24 bg-slate-50 dark:bg-slate-900/50 transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-blue-600 dark:text-blue-400 font-black uppercase tracking-widest text-sm mb-4">Módulos do Sistema</h2>
-        <h3 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tighter mb-6">CONTROLE EM CADA PROCESSO</h3>
-        <p class="text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-          Clique nos cards para expandir e conhecer os diferenciais de cada grupo operativo do Vexia.
-        </p>
-      </div>
-
-      <div class="space-y-24">
-        <div>
-          <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30">
-              <i data-lucide="layout-dashboard" class="w-6 h-6 text-white"></i>
-            </div>
-            <h4 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Grupo Gestão</h4>
-          </div>
-          <div id="grid-gestao" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-start"></div>
+    <!-- Mock dashboard -->
+    <div class="mt-20 relative max-w-6xl mx-auto animate-fade-up" style="animation-delay:.5s">
+      <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/30 via-violet-600/30 to-blue-600/30 rounded-3xl blur-2xl"></div>
+      <div class="relative bg-slate-900/90 border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-slate-800 bg-slate-950/50">
+          <div class="flex gap-1.5"><span class="w-3 h-3 rounded-full bg-red-500/60"></span><span class="w-3 h-3 rounded-full bg-yellow-500/60"></span><span class="w-3 h-3 rounded-full bg-emerald-500/60"></span></div>
+          <div class="flex-1 text-center text-xs text-slate-500">vexia.app — Painel do Gestor</div>
         </div>
-
-        <div>
-          <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-600/30">
-              <i data-lucide="wrench" class="w-6 h-6 text-white"></i>
+        <div class="grid grid-cols-12 gap-4 p-6">
+          <div class="col-span-12 md:col-span-3 space-y-3">
+            <div class="bg-slate-800/60 border border-slate-700/40 rounded-xl p-4">
+              <div class="flex items-center gap-2 text-xs text-slate-400 mb-2"><i data-lucide="truck" class="w-3.5 h-3.5"></i> Frota ativa</div>
+              <div class="text-2xl font-bold">42 / 48</div>
+              <div class="text-xs text-emerald-400 mt-1">87,5% disponibilidade</div>
             </div>
-            <h4 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Grupo Mecânica</h4>
-          </div>
-          <div id="grid-mecanica" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-start"></div>
-        </div>
-
-        <div>
-          <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-teal-600/30">
-              <i data-lucide="file-check" class="w-6 h-6 text-white"></i>
+            <div class="bg-slate-800/60 border border-slate-700/40 rounded-xl p-4">
+              <div class="flex items-center gap-2 text-xs text-slate-400 mb-2"><i data-lucide="route" class="w-3.5 h-3.5"></i> Rotas hoje</div>
+              <div class="text-2xl font-bold">68</div>
+              <div class="text-xs text-blue-400 mt-1">52 concluídas</div>
             </div>
-            <h4 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Grupo Fiscal</h4>
-          </div>
-          <div id="grid-fiscal" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-start"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contato" class="py-24 bg-white dark:bg-slate-950 transition-all duration-500">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-blue-600 dark:bg-blue-700 rounded-[3.5rem] p-10 md:p-20 relative overflow-hidden shadow-2xl">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
-        
-        <div class="grid lg:grid-cols-2 gap-16 relative z-10 items-center">
-          <div>
-            <h2 class="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter uppercase mb-6">A Próxima Geração da <br/> sua Operação.</h2>
-            <p class="text-blue-100 text-xl font-medium leading-relaxed">Demonstração visual de layout. Em um ambiente de produção, este formulário conectaria interessados diretamente à nossa equipe.</p>
-          </div>
-
-          <div class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input disabled type="text" placeholder="Seu Nome" class="bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-blue-200 outline-none opacity-80 cursor-not-allowed" />
-              <input disabled type="text" placeholder="Empresa" class="bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-blue-200 outline-none opacity-80 cursor-not-allowed" />
+            <div class="bg-slate-800/60 border border-slate-700/40 rounded-xl p-4">
+              <div class="flex items-center gap-2 text-xs text-slate-400 mb-2"><i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Alertas</div>
+              <div class="text-2xl font-bold text-amber-400">3</div>
+              <div class="text-xs text-slate-400 mt-1">Para análise</div>
             </div>
-            <input disabled type="email" placeholder="E-mail Corporativo" class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-blue-200 outline-none opacity-80 cursor-not-allowed" />
-            <button disabled class="w-full bg-slate-900 text-white py-6 rounded-2xl font-black text-xl shadow-2xl flex items-center justify-center gap-3 opacity-80 cursor-not-allowed">
-              <i data-lucide="send" class="w-6 h-6"></i> 
-              <span>SOLICITAR AGORA</span>
-            </button>
+          </div>
+          <div class="col-span-12 md:col-span-9 bg-slate-800/40 border border-slate-700/40 rounded-xl h-[280px] md:h-[340px] relative overflow-hidden">
+            <div id="fleetMap"></div>
+            <div class="absolute top-3 left-3 z-10 px-2.5 py-1.5 rounded-md bg-slate-900/80 backdrop-blur border border-slate-700/60 text-xs text-slate-300 flex items-center gap-2 pointer-events-none">
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Mapa Operacional ao Vivo
+            </div>
+            <div class="absolute bottom-3 left-3 z-10 flex flex-wrap gap-2 px-2.5 py-1.5 rounded-md bg-slate-900/80 backdrop-blur border border-slate-700/60 text-[10px] text-slate-300 pointer-events-none">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Em rota</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-400"></span>Coletando</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400"></span>Parado</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-violet-400"></span>Oficina</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="bg-slate-950 text-slate-600 py-16 transition-colors duration-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="flex items-center justify-center gap-2 mb-8 group cursor-pointer">
-        <div class="bg-white/10 text-white p-2 rounded-lg font-bold text-sm transition-transform group-hover:rotate-12">VX</div>
-        <span class="font-black text-white tracking-tighter text-2xl uppercase">VEXIA</span>
-      </div>
-      <p class="text-sm font-bold uppercase tracking-widest opacity-40">© 2026 Vexia Systems. Tech for cities.</p>
+<!-- ============== LOGOS / CONFIANÇA ============== -->
+<section class="py-12 border-y border-slate-800/60 bg-slate-950/40">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p class="text-xs uppercase tracking-[0.2em] text-slate-500 mb-6">Construído para operações que não podem parar</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-slate-500 text-sm font-semibold">
+      <span class="flex items-center gap-2"><i data-lucide="recycle" class="w-4 h-4"></i> Empresas de coleta</span>
+      <span class="flex items-center gap-2"><i data-lucide="warehouse" class="w-4 h-4"></i> Cooperativas</span>
+      <span class="flex items-center gap-2"><i data-lucide="wrench" class="w-4 h-4"></i> Oficinas próprias</span>
+      <span class="flex items-center gap-2"><i data-lucide="leaf" class="w-4 h-4"></i> Programas de reciclagem</span>
+      <span class="flex items-center gap-2"><i data-lucide="file-check-2" class="w-4 h-4"></i> Contratos com prefeitura</span>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-  
-    lucide.createIcons();
+<!-- ============== PROBLEMA ============== -->
+<section class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">O problema</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">A coleta urbana ainda anda no escuro.</h2>
+      <p class="text-lg text-slate-400">Planilhas perdidas, rádio pra acompanhar caminhão, multas que ninguém vê chegar, manutenção corretiva e cidadão reclamando antes do gestor saber. Vexia muda isso.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+          <i data-lucide="eye-off" class="w-5 h-5 text-red-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Sem visibilidade</h3>
+        <p class="text-sm text-slate-400">Você só descobre que a coleta falhou quando o cidadão liga reclamando.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4">
+          <i data-lucide="file-warning" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Papelada que esconde dinheiro</h3>
+        <p class="text-sm text-slate-400">Checklists em papel, ordens de serviço soltas, KM e combustível impossíveis de auditar.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-11 h-11 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-4">
+          <i data-lucide="zap-off" class="w-5 h-5 text-violet-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Decisão sem dado</h3>
+        <p class="text-sm text-slate-400">Sem indicadores, cada reunião com a prefeitura vira "achismo" — e o contrato vira risco.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
- 
-    const html = document.documentElement;
-    const themeBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      html.classList.add('dark');
-      themeIcon.setAttribute('data-lucide', 'sun');
-    } else {
-      themeIcon.setAttribute('data-lucide', 'moon');
+<!-- ============== MÓDULOS ============== -->
+<section id="modulos" class="py-24 bg-slate-950/60 border-y border-slate-800/60">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">A plataforma</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Tudo que sua operação precisa, <span class="gradient-text">em um só lugar.</span></h2>
+      <p class="text-lg text-slate-400">Módulos integrados que conversam entre si — do app do motorista ao painel do dono.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="map-pin" class="w-6 h-6 text-blue-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Frota ao Vivo</h3>
+        <p class="text-sm text-slate-400">Mapa em tempo real com cada veículo, status, rota e equipe a bordo.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="route" class="w-6 h-6 text-violet-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Roteirização Inteligente</h3>
+        <p class="text-sm text-slate-400">Planeje setores, dimensione rotas e simule cenários antes de despachar.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="bot" class="w-6 h-6 text-emerald-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Agente IA Operacional</h3>
+        <p class="text-sm text-slate-400">Faça perguntas em linguagem natural e receba diagnósticos da operação na hora.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="wrench" class="w-6 h-6 text-amber-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">VexiaMec — Oficina</h3>
+        <p class="text-sm text-slate-400">Ordens de serviço, manutenção preventiva, peças e custo por veículo.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="clipboard-check" class="w-6 h-6 text-rose-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Checklist Digital</h3>
+        <p class="text-sm text-slate-400">Pré e pós-operação, com fotos, assinatura e auditoria por veículo.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="users" class="w-6 h-6 text-cyan-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Gestão de Equipes</h3>
+        <p class="text-sm text-slate-400">Funcionários, escalas, ausências, faltas e produtividade individual.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="leaf" class="w-6 h-6 text-lime-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Eco Pontos</h3>
+        <p class="text-sm text-slate-400">Programa de reciclagem com pontuação, gamificação e relatório ESG.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="dollar-sign" class="w-6 h-6 text-orange-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Financeiro & Contratos</h3>
+        <p class="text-sm text-slate-400">Custo por rota, por veículo e por contrato — com a empresa pronta para entregar a medição à prefeitura.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mb-4">
+          <i data-lucide="file-text" class="w-6 h-6 text-pink-400"></i>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Relatórios & Documentos</h3>
+        <p class="text-sm text-slate-400">PDF e Excel no padrão exigido pela prefeitura, gerados pela empresa em segundos com 1 clique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PERSONAS ============== -->
+<section id="personas" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Para quem</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Uma plataforma. <span class="gradient-text">Seis visões.</span></h2>
+      <p class="text-lg text-slate-400">Cada perfil tem sua própria interface, otimizada para o que ele precisa fazer no dia a dia.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-10 h-10 rounded-lg bg-blue-500/15 flex items-center justify-center mb-4"><i data-lucide="user-cog" class="w-5 h-5 text-blue-400"></i></div>
+        <h3 class="font-bold mb-1">Gestor</h3>
+        <p class="text-xs text-slate-400">Painel completo, decisões em tempo real e os documentos que a empresa precisa entregar à prefeitura.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-10 h-10 rounded-lg bg-emerald-500/15 flex items-center justify-center mb-4"><i data-lucide="wrench" class="w-5 h-5 text-emerald-400"></i></div>
+        <h3 class="font-bold mb-1">Mecânico</h3>
+        <p class="text-xs text-slate-400">Ordens de serviço, peças, histórico de cada veículo na palma da mão.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-10 h-10 rounded-lg bg-lime-500/15 flex items-center justify-center mb-4"><i data-lucide="recycle" class="w-5 h-5 text-lime-400"></i></div>
+        <h3 class="font-bold mb-1">Ecoponto</h3>
+        <p class="text-xs text-slate-400">Visão dedicada por unidade de coleta seletiva — entradas, pesagem, pontuação e relatórios ESG.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center mb-4"><i data-lucide="clipboard-list" class="w-5 h-5 text-orange-400"></i></div>
+        <h3 class="font-bold mb-1">Encarregado</h3>
+        <p class="text-xs text-slate-400">Coordena turnos, libera frota, valida checklists e centraliza ocorrências de campo.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-10 h-10 rounded-lg bg-violet-500/15 flex items-center justify-center mb-4"><i data-lucide="shield-check" class="w-5 h-5 text-violet-400"></i></div>
+        <h3 class="font-bold mb-1">Fiscal</h3>
+        <p class="text-xs text-slate-400">Auditoria de campo, registro de inconformidades com foto e GPS.</p>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-10 h-10 rounded-lg bg-amber-500/15 flex items-center justify-center mb-4"><i data-lucide="truck" class="w-5 h-5 text-amber-400"></i></div>
+        <h3 class="font-bold mb-1">Motorista</h3>
+        <p class="text-xs text-slate-400">App mobile com rota, checklist, ocorrências e navegação assistida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMO FUNCIONA ============== -->
+<section id="como" class="py-24 bg-slate-950/60 border-y border-slate-800/60">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Como funciona</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Do papel ao painel <span class="gradient-text">em 30 dias.</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6 relative">
+      <div class="absolute top-6 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent hidden md:block"></div>
+      <div class="relative">
+        <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mb-4 shadow-lg shadow-blue-600/40">1</div>
+        <h3 class="font-bold mb-2">Diagnóstico</h3>
+        <p class="text-sm text-slate-400">Mapeamos sua operação, contratos e dores em uma reunião.</p>
+      </div>
+      <div class="relative">
+        <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mb-4 shadow-lg shadow-blue-600/40">2</div>
+        <h3 class="font-bold mb-2">Setup guiado</h3>
+        <p class="text-sm text-slate-400">Cadastramos frota, equipes e setores com você. Sem friction.</p>
+      </div>
+      <div class="relative">
+        <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mb-4 shadow-lg shadow-blue-600/40">3</div>
+        <h3 class="font-bold mb-2">Treinamento</h3>
+        <p class="text-sm text-slate-400">Capacitamos motoristas, gestor, mecânico e fiscal — cada um no seu app.</p>
+      </div>
+      <div class="relative">
+        <div class="w-12 h-12 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mb-4 shadow-lg shadow-blue-600/40">4</div>
+        <h3 class="font-bold mb-2">Go-live</h3>
+        <p class="text-sm text-slate-400">Operação no ar com suporte dedicado nos primeiros 30 dias.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MANIFESTO ============== -->
+<section class="py-24">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <p class="text-xs uppercase tracking-[0.2em] text-blue-400 font-semibold mb-6">Palavra do fundador</p>
+    <i data-lucide="quote" class="w-10 h-10 text-blue-500/60 mx-auto mb-6"></i>
+    <p class="text-2xl md:text-3xl font-medium leading-snug mb-8">
+      "O Vexia nasceu <span class="text-white">na operação, não no escritório</span>. Eu vivi o checklist no papel, o gestor decidindo no escuro e a prefeitura cobrando indicador que ninguém tinha. <span class="gradient-text">Estamos construindo a plataforma que faltava</span> — feita por quem entende o caminhão e o painel."
+    </p>
+    <div class="flex items-center justify-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold">GB</div>
+      <div class="text-left">
+        <div class="font-semibold">Gabriel Bustus</div>
+        <div class="text-xs text-slate-400">CEO &amp; Fundador · GB Systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PLANOS ============== -->
+<section id="planos" class="py-24 bg-slate-950/60 border-y border-slate-800/60">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">Planos</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Cresça <span class="gradient-text">no seu ritmo.</span></h2>
+      <p class="text-lg text-slate-400">Comece pelo essencial e ative módulos conforme a operação amadurece.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-7 flex flex-col">
+        <h3 class="font-bold text-lg mb-1">Essencial</h3>
+        <p class="text-sm text-slate-400 mb-5">Para começar a enxergar a operação.</p>
+        <div class="text-3xl font-extrabold mb-1">Sob consulta</div>
+        <div class="text-xs text-slate-500 mb-6">Por veículo / mês</div>
+        <ul class="space-y-2.5 text-sm text-slate-300 mb-8 flex-1">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Frota ao vivo</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>App do motorista</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Checklist digital</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Relatórios básicos</li>
+        </ul>
+        <a href="#contato" class="text-center bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white px-5 py-3 rounded-lg font-semibold transition">Começar</a>
+      </div>
+
+      <div class="relative bg-gradient-to-b from-blue-600/20 to-slate-900/60 border border-blue-500/40 rounded-2xl p-7 flex flex-col shadow-2xl shadow-blue-600/20">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Mais popular</div>
+        <h3 class="font-bold text-lg mb-1">Profissional</h3>
+        <p class="text-sm text-slate-400 mb-5">A operação completa, ponta a ponta.</p>
+        <div class="text-3xl font-extrabold mb-1">Sob consulta</div>
+        <div class="text-xs text-slate-500 mb-6">Por veículo / mês</div>
+        <ul class="space-y-2.5 text-sm text-slate-300 mb-8 flex-1">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Tudo do Essencial</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Roteirização inteligente</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>VexiaMec — Oficina</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Fiscalização & auditoria</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Financeiro por contrato</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Documentos no padrão da prefeitura</li>
+        </ul>
+        <a href="#contato" class="text-center bg-blue-600 hover:bg-blue-500 text-white px-5 py-3 rounded-lg font-semibold transition shadow-lg shadow-blue-600/30">Falar com vendas</a>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-7 flex flex-col">
+        <h3 class="font-bold text-lg mb-1">Enterprise</h3>
+        <p class="text-sm text-slate-400 mb-5">Para grupos e operações multiempresa.</p>
+        <div class="text-3xl font-extrabold mb-1">Sob consulta</div>
+        <div class="text-xs text-slate-500 mb-6">Customizado</div>
+        <ul class="space-y-2.5 text-sm text-slate-300 mb-8 flex-1">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Tudo do Profissional</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Agente IA Operacional</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Multiempresa & multi-contrato</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>SSO & integração via API</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>SLA dedicado</li>
+        </ul>
+        <a href="#contato" class="text-center bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white px-5 py-3 rounded-lg font-semibold transition">Falar com especialista</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section id="faq" class="py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <p class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3">FAQ</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Perguntas frequentes</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none">
+          <span>Vocês atendem prefeituras diretamente?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3">Não. O Vexia é uma plataforma B2B feita para a <strong class="text-slate-200">empresa de coleta</strong> que tem contrato com a prefeitura. O que entregamos é o ferramental para que essa empresa cumpra o contrato com excelência e gere, automaticamente, os documentos, indicadores e medições que a prefeitura exige.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none">
+          <span>Quanto tempo leva para implantar?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3">A implantação típica vai de 15 a 30 dias, incluindo cadastro de frota, equipes, treinamento e go-live com suporte dedicado.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none">
+          <span>Funciona offline para o motorista?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3">Sim. O app mobile funciona em modo offline e sincroniza automaticamente quando recupera sinal — essencial para áreas rurais e periféricas.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none">
+          <span>É possível integrar com nosso ERP?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3">Sim. Disponibilizamos API e exportações estruturadas (Excel, JSON). Integramos com sistemas de folha, financeiro e BI.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none">
+          <span>Como é a segurança e privacidade dos dados?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3">Vexia roda em infra Google Cloud / Firebase com criptografia em trânsito e em repouso, logs de auditoria imutáveis e conformidade com a LGPD.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA / CONTATO ============== -->
+<section id="contato" class="py-24 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-violet-600/10 to-transparent"></div>
+  <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-blue-600/20 blur-3xl"></div>
+  <div class="relative max-w-4xl mx-auto px-6">
+    <div class="bg-slate-900/80 border border-slate-700/60 rounded-3xl p-10 md:p-14 backdrop-blur shadow-2xl">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Pronto para enxergar sua operação?</h2>
+        <p class="text-slate-400 text-lg">Agende uma demonstração de 30 minutos. Sem compromisso, com casos reais.</p>
+      </div>
+
+      <form id="leadForm" class="grid md:grid-cols-2 gap-4">
+        <label class="sr-only" for="lf-nome">Nome</label>
+        <input id="lf-nome" required type="text" placeholder="Nome"
+          class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+        <label class="sr-only" for="lf-empresa">Empresa ou prefeitura</label>
+        <input id="lf-empresa" required type="text" placeholder="Empresa ou prefeitura"
+          class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+        <label class="sr-only" for="lf-email">E-mail</label>
+        <input id="lf-email" required type="email" placeholder="E-mail corporativo"
+          class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+        <label class="sr-only" for="lf-tel">Telefone</label>
+        <input id="lf-tel" required type="tel" placeholder="Telefone / WhatsApp"
+          class="bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+        <label class="sr-only" for="lf-frota">Tamanho da frota</label>
+        <select id="lf-frota" class="md:col-span-2 bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm text-slate-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+          <option>Tamanho da frota...</option>
+          <option>1 a 10 veículos</option>
+          <option>11 a 30 veículos</option>
+          <option>31 a 80 veículos</option>
+          <option>Mais de 80 veículos</option>
+        </select>
+        <label class="sr-only" for="lf-msg">Mensagem</label>
+        <textarea id="lf-msg" rows="3" placeholder="Conte rapidinho sobre sua operação (opcional)"
+          class="md:col-span-2 bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-3 text-sm placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"></textarea>
+        <button type="submit"
+          class="md:col-span-2 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-xl font-semibold transition shadow-xl shadow-blue-600/30">
+          Quero ver o Vexia em ação
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+      <div id="leadSuccess" class="hidden mt-6 flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 rounded-xl px-5 py-4">
+        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+        <span class="text-sm">Recebemos seu contato. Nosso time falará com você em breve.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="border-t border-slate-800/60 py-10 text-sm text-slate-500">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-md bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+        <i data-lucide="truck" class="w-4 h-4 text-white"></i>
+      </div>
+      <span class="font-bold text-slate-300">Vexia</span>
+      <span>· Plataforma de gestão para coleta urbana</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="index.html" class="hover:text-white transition">Portfólio</a>
+      <a href="vexiaPrivacidade.html" class="hover:text-white transition">Privacidade</a>
+      <a href="vexiaTermos.html" class="hover:text-white transition">Termos</a>
+      <a href="vexiaContato.html" class="hover:text-white transition">Contato</a>
+    </div>
+    <div>© <span id="year"></span> Vexia. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function showToast(message) {
+    let toast = document.getElementById('toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className = 'toast';
+      document.body.appendChild(toast);
     }
-    lucide.createIcons();
+    toast.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> ${message}`;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
 
-    themeBtn.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      if (html.classList.contains('dark')) {
-        localStorage.theme = 'dark';
-        themeIcon.setAttribute('data-lucide', 'sun');
-      } else {
-        localStorage.theme = 'light';
-        themeIcon.setAttribute('data-lucide', 'moon');
-      }
-      lucide.createIcons();
+  // Mapa operacional ao vivo (Leaflet)
+  (function initFleetMap() {
+    const el = document.getElementById('fleetMap');
+    if (!el || typeof L === 'undefined') return;
+
+    const map = L.map(el, {
+      zoomControl: true,
+      attributionControl: true,
+      scrollWheelZoom: false,
+      dragging: true,
+    }).setView([-23.5489, -46.6388], 12);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    const fleet = [
+      { lat: -23.5380, lng: -46.6520, status: 'em-rota',   label: 'Caminhão 12 — Em rota',   color: '#34d399', pulse: true },
+      { lat: -23.5605, lng: -46.6420, status: 'coletando', label: 'Caminhão 07 — Coletando', color: '#60a5fa', pulse: true },
+      { lat: -23.5530, lng: -46.6200, status: 'parado',    label: 'Caminhão 21 — Parado',    color: '#fbbf24', pulse: false },
+      { lat: -23.5450, lng: -46.6700, status: 'em-rota',   label: 'Caminhão 03 — Em rota',   color: '#34d399', pulse: true },
+      { lat: -23.5700, lng: -46.6580, status: 'oficina',   label: 'Caminhão 18 — Oficina',   color: '#a78bfa', pulse: false },
+      { lat: -23.5320, lng: -46.6310, status: 'coletando', label: 'Caminhão 09 — Coletando', color: '#60a5fa', pulse: true },
+      { lat: -23.5620, lng: -46.6750, status: 'em-rota',   label: 'Caminhão 25 — Em rota',   color: '#34d399', pulse: false },
+    ];
+
+    fleet.forEach(v => {
+      const icon = L.divIcon({
+        className: '',
+        html: `<div class="vexia-pin ${v.pulse ? 'pulse' : ''}" style="--ring:${v.color};background:${v.color};position:relative;"></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      });
+      L.marker([v.lat, v.lng], { icon })
+        .addTo(map)
+        .bindPopup(`<strong>${v.label}</strong>`, { closeButton: false });
     });
+  })();
 
-    const moduleData = {
-      gestao: [
-        { name: 'Visão Geral', icon: 'layout-dashboard', desc: 'Painel mestre com KPIs dinâmicos e métricas críticas atualizadas a cada segundo.' },
-        { name: 'Mapa Realtime', icon: 'map', desc: 'Monitoramento geográfico de alta precisão com histórico de trilha e telemetria básica.' },
-        { name: 'Frota & Status', icon: 'truck', desc: 'Gerenciamento visual da disponibilidade da frota e status operacional imediato.' },
-        { name: 'Docs & Multas', icon: 'file-text', desc: 'Digitalização completa e controle de prazos legais, CNHs e notificações de trânsito.' },
-        { name: 'Roteirização', icon: 'route', desc: 'Cálculo de rotas inteligentes focadas na redução de quilometragem e tempo de operação.' },
-        { name: 'Escalas & Turnos', icon: 'calendar-clock', desc: 'Gestão robusta de recursos humanos com suporte a turnos rotativos e escalas de domingo.' },
-        { name: 'Portaria Web', icon: 'door-open', desc: 'App de portaria para registro ágil de entrada/saída integrado ao CAV e checklists.' },
-        { name: 'Vistorias', icon: 'clipboard-check', desc: 'Padronização de inspeções técnicas para garantir a qualidade estética e funcional.' },
-        { name: 'Coletas & Aterros', icon: 'trash-2', desc: 'Controle de pesagens, viagens realizadas e gestão de descartes em destinos finais.' },
-        { name: 'Ecopontos SP', icon: 'leaf', desc: 'Módulo exclusivo para rede de ecopontos com volumetria e controle de ocupação.' },
-        { name: 'Banco de Folgas', icon: 'calendar-off', desc: 'Administração simplificada de descansos, faltas e substituições operacionais.' },
-        { name: 'Relatórios BI', icon: 'bar-chart-3', desc: 'Geração de inteligência analítica para prestação de contas governamentais.' },
-        { name: 'Gestão Financeira', icon: 'circle-dollar-sign', desc: 'Fluxo de caixa operacional, custos por km e análise de rentabilidade por contrato.' },
-        { name: 'Cadastro Equipe', icon: 'users', desc: 'Gestão centralizada de colaboradores, motoristas e ajudantes de coleta.' },
-        { name: 'VexiAegis Sec', icon: 'shield-check', desc: 'Nossa camada proprietária de segurança com criptografia e auditoria de logs total.' }
-      ],
-      mecanica: [
-        { name: 'Visão Oficina', icon: 'layout-dashboard', desc: 'Monitor de pátio com fila de manutenção e tempos de reparo por veículo.' },
-        { name: 'Gestão de OS', icon: 'wrench', desc: 'Ciclo completo de ordens de serviço: abertura, mão de obra, peças e encerramento.' },
-        { name: 'Borracharia', icon: 'circle-dot', desc: 'Gestão de pneus com controle de sulco, rodízio e custo por quilômetro.' },
-        { name: 'Abastecimento', icon: 'fuel', desc: 'Registro de bombas, controle de média e detecção automática de fraudes.' },
-        { name: 'Prontuário', icon: 'history', desc: 'Histórico eterno de intervenções para valorização da frota e auditoria técnica.' }
-      ],
-      fiscal: [
-        { name: 'Contraprovas', icon: 'file-check', desc: 'Evidências digitais com GPS e carimbo de tempo para respaldo jurídico municipal.' },
-        { name: 'Status Equipe', icon: 'user-cog', desc: 'Fiscalização de conduta, uso de EPIs e performance de campo.' },
-        { name: 'Logs de Campo', icon: 'history', desc: 'Relatórios de rondas fiscais e ocorrências detetadas em tempo real.' },
-        { name: 'Materiais EPI', icon: 'package', desc: 'Controle de entrega e validade de materiais e equipamentos para a equipe.' }
-      ]
-    };
-
-    const themeStyles = {
-      blue: { border: 'border-blue-500/50', activeBg: 'bg-blue-600', iconBg: 'bg-blue-50 dark:bg-blue-900/30', iconText: 'text-blue-600 dark:text-blue-400', glow: 'shadow-blue-500/20' },
-      orange: { border: 'border-orange-500/50', activeBg: 'bg-orange-600', iconBg: 'bg-orange-50 dark:bg-orange-900/30', iconText: 'text-orange-600 dark:text-orange-400', glow: 'shadow-orange-500/20' },
-      teal: { border: 'border-teal-500/50', activeBg: 'bg-teal-600', iconBg: 'bg-teal-50 dark:bg-teal-900/30', iconText: 'text-teal-600 dark:text-teal-400', glow: 'shadow-teal-500/20' }
-    };
-
-    let activeCardId = null;
-
-   
-    function createCard(mod, id, color) {
-      const styles = themeStyles[color];
-      return `
-        <div id="${id}" onclick="toggleCard('${id}', '${color}')" class="module-card relative flex flex-col p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer shadow-sm">
-          <div class="flex items-center gap-4">
-            <div class="card-icon-container p-3 rounded-xl transition-all duration-500 ${styles.iconBg} ${styles.iconText}">
-              <i data-lucide="${mod.icon}" class="w-6 h-6 transition-transform group-hover:scale-110"></i>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span class="card-title font-bold text-sm block transition-colors duration-300 text-slate-700 dark:text-slate-300">${mod.name}</span>
-            </div>
-            <div class="card-chevron shrink-0 transition-transform duration-500">
-              <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 opacity-50"></i>
-            </div>
-          </div>
-          
-          <div class="module-card-content">
-            <div class="module-card-inner">
-              <div class="border-t border-slate-100 dark:border-slate-700 pt-3 text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed transition-all duration-700">
-                ${mod.desc}
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-   
-    function renderGrids() {
-      document.getElementById('grid-gestao').innerHTML = moduleData.gestao.map((m, i) => createCard(m, `gestao-${i}`, 'blue')).join('');
-      document.getElementById('grid-mecanica').innerHTML = moduleData.mecanica.map((m, i) => createCard(m, `mecanica-${i}`, 'orange')).join('');
-      document.getElementById('grid-fiscal').innerHTML = moduleData.fiscal.map((m, i) => createCard(m, `fiscal-${i}`, 'teal')).join('');
-      lucide.createIcons();
-    }
-
-
-    window.toggleCard = function(id, color) {
-      const styles = themeStyles[color];
-      
-      if (activeCardId && activeCardId !== id) {
-        const prevEl = document.getElementById(activeCardId);
-        if(prevEl) resetCardStyles(prevEl);
-      }
-
-      const card = document.getElementById(id);
-      const isActivating = !card.classList.contains('active');
-
-      if (isActivating) {
-        card.classList.add('active', styles.border, 'shadow-2xl', styles.glow, 'scale-[1.02]', 'z-10');
-        card.classList.remove('border-slate-200', 'dark:border-slate-700', 'hover:border-slate-300', 'dark:hover:border-slate-600', 'shadow-sm');
-        
-        const iconContainer = card.querySelector('.card-icon-container');
-        iconContainer.className = `card-icon-container p-3 rounded-xl transition-all duration-500 ${styles.activeBg} text-white scale-110 rotate-2`;
-        
-        card.querySelector('.card-title').classList.replace('text-slate-700', 'text-slate-900');
-        card.querySelector('.card-title').classList.replace('dark:text-slate-300', 'dark:text-white');
-        card.querySelector('.card-chevron').classList.add('rotate-180');
-        card.querySelector('.card-chevron svg').setAttribute('class', `lucide lucide-chevron-down w-5 h-5 ${styles.iconText}`);
-        
-        activeCardId = id;
-      } else {
-        resetCardStyles(card);
-        activeCardId = null;
-      }
-    };
-
-    function resetCardStyles(card) {
-      const idStr = card.id;
-      const color = idStr.startsWith('gestao') ? 'blue' : idStr.startsWith('mecanica') ? 'orange' : 'teal';
-      const styles = themeStyles[color];
-
-      card.classList.remove('active', styles.border, 'shadow-2xl', styles.glow, 'scale-[1.02]', 'z-10');
-      card.classList.add('border-slate-200', 'dark:border-slate-700', 'hover:border-slate-300', 'dark:hover:border-slate-600', 'shadow-sm');
-      
-      const iconContainer = card.querySelector('.card-icon-container');
-      iconContainer.className = `card-icon-container p-3 rounded-xl transition-all duration-500 ${styles.iconBg} ${styles.iconText}`;
-      
-      card.querySelector('.card-title').classList.replace('text-slate-900', 'text-slate-700');
-      card.querySelector('.card-title').classList.replace('dark:text-white', 'dark:text-slate-300');
-      card.querySelector('.card-chevron').classList.remove('rotate-180');
-      card.querySelector('.card-chevron svg').setAttribute('class', `lucide lucide-chevron-down w-5 h-5 text-slate-400 opacity-50`);
-    }
-
-    renderGrids();
-  </script>
+  const form = document.getElementById('leadForm');
+  const success = document.getElementById('leadSuccess');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.reset();
+    success.classList.remove('hidden');
+    success.classList.add('flex');
+    lucide.createIcons();
+    showToast('Recebemos seu contato!');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
 </body>
 </html>
