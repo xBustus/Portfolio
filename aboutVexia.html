@@ -471,19 +471,62 @@
   </div>
 </section>
 
-<!-- ============== MANIFESTO ============== -->
+<!-- ============== VOZES (CARROSSEL) ============== -->
 <section class="py-24">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <p class="text-xs uppercase tracking-[0.2em] text-blue-400 font-semibold mb-6">Palavra do fundador</p>
-    <i data-lucide="quote" class="w-10 h-10 text-blue-500/60 mx-auto mb-6"></i>
-    <p class="text-2xl md:text-3xl font-medium leading-snug mb-8">
-      "O Vexia nasceu <span class="text-white">na operação, não no escritório</span>. Eu vivi o checklist no papel, o gestor decidindo no escuro e a prefeitura cobrando indicador que ninguém tinha. <span class="gradient-text">Estamos construindo a plataforma que faltava</span> — feita por quem entende o caminhão e o painel."
-    </p>
-    <div class="flex items-center justify-center gap-3">
-      <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold">GB</div>
-      <div class="text-left">
-        <div class="font-semibold">Gabriel Bustus</div>
-        <div class="text-xs text-slate-400">CEO &amp; Fundador · GB Systems</div>
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="text-center text-xs uppercase tracking-[0.2em] text-blue-400 font-semibold mb-10">Vozes do Vexia</p>
+
+    <div id="testimonialCarousel" class="relative">
+      <div class="overflow-hidden">
+        <div id="testimonialTrack" class="flex transition-transform duration-500 ease-out">
+
+          <!-- Slide 1: Manifesto do fundador -->
+          <div class="w-full flex-shrink-0 px-4 md:px-12 text-center">
+            <span class="inline-block text-[10px] uppercase tracking-widest text-blue-400 font-semibold mb-4 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30">Palavra do fundador</span>
+            <i data-lucide="quote" class="w-10 h-10 text-blue-500/60 mx-auto mb-6"></i>
+            <p class="text-xl md:text-3xl font-medium leading-snug mb-8 max-w-3xl mx-auto">
+              "O Vexia nasceu <span class="text-white">na operação, não no escritório</span>. Eu vivi o checklist no papel, o gestor decidindo no escuro e a prefeitura cobrando indicador que ninguém tinha. <span class="gradient-text">Estamos construindo a plataforma que faltava</span> — feita por quem entende o caminhão e o painel."
+            </p>
+            <div class="flex items-center justify-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold">GB</div>
+              <div class="text-left">
+                <div class="font-semibold">Gabriel Bustus</div>
+                <div class="text-xs text-slate-400">CEO &amp; Fundador · GB Systems</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Vander Cattini -->
+          <div class="w-full flex-shrink-0 px-4 md:px-12 text-center">
+            <span class="inline-block text-[10px] uppercase tracking-widest text-emerald-400 font-semibold mb-4 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">Quem usa</span>
+            <i data-lucide="quote" class="w-10 h-10 text-emerald-500/60 mx-auto mb-6"></i>
+            <p class="text-xl md:text-3xl font-medium leading-snug mb-8 max-w-3xl mx-auto">
+              "Atuante na área de <span class="text-white">limpeza pública há 7 anos</span>, nunca vi nada igual: tudo em uma única plataforma. Sempre estivemos defasados de algo <span class="gradient-text">tão completo, simples e fácil de usar</span>. Os níveis de acesso por operador e o alto controle das informações reduzem drasticamente a margem de erro."
+            </p>
+            <div class="flex items-center justify-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-600 flex items-center justify-center font-bold">VC</div>
+              <div class="text-left">
+                <div class="font-semibold">Vander Cattini</div>
+                <div class="text-xs text-slate-400">Analista de Planejamento · SP Urbano</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Setas -->
+      <button class="carousel-prev hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-11 h-11 rounded-full bg-slate-800/80 border border-slate-700 hover:bg-slate-700 hover:border-blue-500/50 text-white items-center justify-center transition" aria-label="Anterior">
+        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+      </button>
+      <button class="carousel-next hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-11 h-11 rounded-full bg-slate-800/80 border border-slate-700 hover:bg-slate-700 hover:border-blue-500/50 text-white items-center justify-center transition" aria-label="Próximo">
+        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-10">
+        <button class="carousel-dot h-2 rounded-full bg-blue-500 w-8 transition-all" aria-label="Ir para depoimento 1"></button>
+        <button class="carousel-dot h-2 rounded-full bg-slate-700 w-2 transition-all" aria-label="Ir para depoimento 2"></button>
       </div>
     </div>
   </div>
@@ -722,6 +765,58 @@
         .addTo(map)
         .bindPopup(`<strong>${v.label}</strong>`, { closeButton: false });
     });
+  })();
+
+  // Carrossel de depoimentos
+  (function initTestimonialCarousel() {
+    const carousel = document.getElementById('testimonialCarousel');
+    const track = document.getElementById('testimonialTrack');
+    if (!carousel || !track) return;
+
+    const slides = Array.from(track.children);
+    const dots = carousel.querySelectorAll('.carousel-dot');
+    const prev = carousel.querySelector('.carousel-prev');
+    const next = carousel.querySelector('.carousel-next');
+    let current = 0;
+    let timer;
+
+    function go(idx) {
+      current = (idx + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => {
+        const active = i === current;
+        d.classList.toggle('bg-blue-500', active);
+        d.classList.toggle('w-8',        active);
+        d.classList.toggle('bg-slate-700', !active);
+        d.classList.toggle('w-2',          !active);
+      });
+    }
+
+    function autoPlay() {
+      clearTimeout(timer);
+      timer = setTimeout(() => go(current + 1), 15000);
+    }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { go(i); autoPlay(); }));
+    if (prev) prev.addEventListener('click', () => { go(current - 1); autoPlay(); });
+    if (next) next.addEventListener('click', () => { go(current + 1); autoPlay(); });
+
+    carousel.addEventListener('mouseenter', () => clearTimeout(timer));
+    carousel.addEventListener('mouseleave', autoPlay);
+
+    // Swipe touch
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) {
+        go(dx < 0 ? current + 1 : current - 1);
+        autoPlay();
+      }
+    });
+
+    go(0);
+    autoPlay();
   })();
 
   const form = document.getElementById('leadForm');

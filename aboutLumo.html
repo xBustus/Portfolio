@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="assets/Profile-Picture.ico" type="image/x-icon" />
+<title>Lumo — Controle financeiro para pequenas empresas</title>
+<meta name="description" content="Lumo é o SaaS de controle financeiro para barbearias, lojas de roupas e pequenas empresas — OCR de notas, multi-tenant, precificação automática e dashboard ao vivo." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #050a08; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(16,185,129,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16,185,129,0.07) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #facc15 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .card-hover { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+  .card-hover:hover { transform: translateY(-4px); border-color: rgba(16,185,129,0.4); }
+  .glass { background: rgba(5,18,15,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  @keyframes fadeUp { 0% {opacity:0; transform: translateY(20px);} 100% {opacity:1; transform: translateY(0);} }
+  .animate-fade-up { animation: fadeUp 0.7s ease-out both; }
+  @keyframes glow { 0%,100% {box-shadow: 0 0 30px -10px rgba(16,185,129,0.5);} 50% {box-shadow: 0 0 50px -5px rgba(16,185,129,0.8);} }
+  .animate-glow { animation: glow 3s ease-in-out infinite; }
+  details[open] summary .chev { transform: rotate(180deg); }
+  .chev { transition: transform 0.2s ease; }
+</style>
+</head>
+<body class="text-slate-200 antialiased overflow-x-hidden">
+
+<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-emerald-950/60">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 group">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-yellow-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+        <i data-lucide="wallet" class="w-5 h-5 text-white"></i>
+      </div>
+      <span class="text-xl font-bold tracking-tight">Lumo</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+      <a href="#funcionalidades" class="hover:text-white transition">Funcionalidades</a>
+      <a href="#stack" class="hover:text-white transition">Stack</a>
+      <a href="#planos" class="hover:text-white transition">Planos</a>
+      <a href="#faq" class="hover:text-white transition">FAQ</a>
+    </div>
+    <a href="projects.html" class="inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-white transition">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i>
+      Projetos
+    </a>
+  </nav>
+</header>
+
+<section class="relative pt-36 pb-24 overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="absolute top-20 -left-40 w-[500px] h-[500px] rounded-full bg-emerald-600/20 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-40 -right-40 w-[500px] h-[500px] rounded-full bg-yellow-600/20 blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-900/60 text-xs text-slate-300 mb-6 animate-fade-up">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      SaaS financeiro para pequenas empresas
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 animate-fade-up" style="animation-delay:.1s">
+      Dinheiro entrando.<br>
+      <span class="gradient-text">E saindo no controle.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay:.2s">
+      Lumo é o controle financeiro feito para barbearias, lojas de roupas e pequenas empresas — com OCR de notas fiscais, precificação automática e dashboard em tempo real.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up" style="animation-delay:.3s">
+      <a href="#funcionalidades" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-emerald-600/30 animate-glow">
+        Conhecer
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <a href="#planos" class="inline-flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-white px-7 py-3.5 rounded-xl font-semibold transition">
+        Ver planos
+        <i data-lucide="tag" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-up" style="animation-delay:.4s">
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">7d</div>
+        <div class="text-xs text-slate-400 mt-1">trial gratuito sem cartão</div>
+      </div>
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">OCR</div>
+        <div class="text-xs text-slate-400 mt-1">Gemini extrai notas em segundos</div>
+      </div>
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">RLS</div>
+        <div class="text-xs text-slate-400 mt-1">multi-tenant nativo no Postgres</div>
+      </div>
+      <div class="text-left">
+        <div class="text-3xl font-bold gradient-text">PIX</div>
+        <div class="text-xs text-slate-400 mt-1">cartão e boleto via Mercado Pago</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="funcionalidades" class="py-24 bg-black/40 border-y border-emerald-950/40">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">Funcionalidades</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Tudo que o dono precisa, <span class="gradient-text">sem planilha.</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4"><i data-lucide="building-2" class="w-6 h-6 text-emerald-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Multi-tenant</h3>
+        <p class="text-sm text-slate-400">Cada empresa enxerga só os próprios dados, garantido por RLS no Postgres.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center mb-4"><i data-lucide="scan-line" class="w-6 h-6 text-yellow-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">OCR de notas fiscais</h3>
+        <p class="text-sm text-slate-400">Tire foto da nota — o Gemini 2.0 Flash extrai número, CNPJ, valor e itens automaticamente.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-4"><i data-lucide="users-round" class="w-6 h-6 text-blue-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Clientes & CRM leve</h3>
+        <p class="text-sm text-slate-400">Cadastro de clientes, histórico de compras e ticket médio individual.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center mb-4"><i data-lucide="arrow-left-right" class="w-6 h-6 text-rose-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Entradas e saídas</h3>
+        <p class="text-sm text-slate-400">Categoria, cliente, forma de pagamento e centro de custo em cada movimento.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4"><i data-lucide="pie-chart" class="w-6 h-6 text-violet-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Centro de custos</h3>
+        <p class="text-sm text-slate-400">Aluguel, água, luz, internet — com rateio automático entre serviços e produtos.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4"><i data-lucide="calculator" class="w-6 h-6 text-orange-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Precificação automática</h3>
+        <p class="text-sm text-slate-400">Calcula o preço sugerido por serviço considerando todos os custos diretos e indiretos.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4"><i data-lucide="layout-dashboard" class="w-6 h-6 text-cyan-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Dashboard</h3>
+        <p class="text-sm text-slate-400">Entradas, saídas, custos e lucro do mês em uma tela só.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center mb-4"><i data-lucide="credit-card" class="w-6 h-6 text-lime-400"></i></div>
+        <h3 class="font-bold text-lg mb-2">Assinaturas Mercado Pago</h3>
+        <p class="text-sm text-slate-400">PIX, cartão e boleto. Trial de 14 dias e renovação automática.</p>
+      </div>
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl bg-slate-500/10 border border-slate-500/30 flex items-center justify-center mb-4"><i data-lucide="moon" class="w-6 h-6 text-slate-300"></i></div>
+        <h3 class="font-bold text-lg mb-2">Dark mode</h3>
+        <p class="text-sm text-slate-400">Interface clara ou escura. A preferência é salva automaticamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">Stack</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Moderno, simples, <span class="gradient-text">deploy em minutos.</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center"><i data-lucide="zap" class="w-7 h-7 text-emerald-400 mx-auto mb-2"></i><div class="font-bold">Next.js 14</div><div class="text-xs text-slate-400 mt-1">App Router · TS · Tailwind</div></div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center"><i data-lucide="database" class="w-7 h-7 text-emerald-400 mx-auto mb-2"></i><div class="font-bold">Supabase</div><div class="text-xs text-slate-400 mt-1">Postgres + Auth + Storage</div></div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center"><i data-lucide="sparkles" class="w-7 h-7 text-yellow-400 mx-auto mb-2"></i><div class="font-bold">Gemini 2.0</div><div class="text-xs text-slate-400 mt-1">OCR de notas fiscais</div></div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5 text-center"><i data-lucide="banknote" class="w-7 h-7 text-yellow-400 mx-auto mb-2"></i><div class="font-bold">Mercado Pago</div><div class="text-xs text-slate-400 mt-1">Assinaturas recorrentes</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="planos" class="py-24 bg-black/40 border-y border-emerald-950/40">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">Planos</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Comece grátis. <span class="gradient-text">Cresça quando precisar.</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-7 flex flex-col">
+        <h3 class="font-bold text-lg mb-1">Trial</h3>
+        <p class="text-sm text-slate-400 mb-5">Pra testar antes de assinar.</p>
+        <div class="text-3xl font-extrabold mb-1">14 dias</div>
+        <div class="text-xs text-slate-500 mb-6">Sem cartão</div>
+        <ul class="space-y-2.5 text-sm text-slate-300 mb-8 flex-1">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Acesso completo</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>OCR de notas</li>
+        </ul>
+      </div>
+      <div class="relative bg-gradient-to-b from-emerald-600/20 to-slate-900/60 border border-emerald-500/40 rounded-2xl p-7 flex flex-col shadow-2xl shadow-emerald-600/20">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Mais popular</div>
+        <h3 class="font-bold text-lg mb-1">Essencial</h3>
+        <p class="text-sm text-slate-400 mb-5">Para barbearias e lojas pequenas.</p>
+        <div class="text-3xl font-extrabold mb-1">R$ 69,90</div>
+        <div class="text-xs text-slate-500 mb-6">por mês</div>
+        <ul class="space-y-2.5 text-sm text-slate-300 mb-8 flex-1">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Clientes ilimitados</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Entradas e saídas</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>OCR de notas fiscais</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Dashboard mensal</li>
+        </ul>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-7 flex flex-col">
+        <h3 class="font-bold text-lg mb-1">Profissional</h3>
+        <p class="text-sm text-slate-400 mb-5">Para quem cresce.</p>
+        <div class="text-3xl font-extrabold mb-1">R$ 149,90</div>
+        <div class="text-xs text-slate-500 mb-6">por mês</div>
+        <ul class="space-y-2.5 text-sm text-slate-300 mb-8 flex-1">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Tudo do Essencial</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Centro de custos com rateio</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Precificação automática</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Múltiplos usuários</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <p class="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">FAQ</p>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Perguntas frequentes</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>O Lumo serve para a minha barbearia / loja?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
+        <p class="text-slate-400 text-sm mt-3">Sim. Foi desenhado para barbearias, lojas de roupas e pequenas empresas que precisam saber o lucro real sem entender contabilidade.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>Como funciona o OCR de notas?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
+        <p class="text-slate-400 text-sm mt-3">Você anexa foto ou PDF da nota e o Gemini 2.0 Flash extrai número, CNPJ, valor total e itens. Você confere e salva.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>Meus dados ficam isolados?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
+        <p class="text-slate-400 text-sm mt-3">Sim. Cada empresa tem RLS no Postgres garantindo que ninguém consegue ler nada além do próprio espaço — nem mesmo por engano.</p>
+      </details>
+      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>Posso pagar com PIX?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
+        <p class="text-slate-400 text-sm mt-3">Sim. As assinaturas vão pelo Mercado Pago e aceitam PIX, cartão e boleto.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-emerald-950/60 py-10 text-sm text-slate-500">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-md bg-gradient-to-br from-emerald-500 to-yellow-500 flex items-center justify-center"><i data-lucide="wallet" class="w-4 h-4 text-white"></i></div>
+      <span class="font-bold text-slate-300">Lumo</span>
+      <span>· Controle financeiro para pequenas empresas</span>
+    </div>
+    <a href="projects.html" class="hover:text-white transition">← Voltar aos projetos</a>
+    <div>© <span id="year"></span> Gabriel Bustus.</div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
