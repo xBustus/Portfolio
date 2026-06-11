@@ -1,74 +1,116 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configurações</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="theme.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/Profile-Picture.ico" type="image/x-icon" />
+  <title data-i18n="meta.settings.title">Settings — Gabriel Bustus</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="theme.js"></script>
 </head>
 
-<body class="bg-black text-white">
-    <div id="splineContainer"></div>
-
-    <div class="min-h-screen flex flex-col items-center justify-center p-4">
-        <div
-            class="bg-black text-white drop-shadow-[0_0_10px_#D13800] rounded-lg p-6 w-full max-w-md transition-all duration-300">
-            <h1 class="text-xl font-semibold mb-4 text-center">Configurações</h1>
-
-            <div class="space-y-4">
-
-                <div>
-                    <label class="block font-medium">Tema</label>
-                    <select id="themeSelector" class="w-full p-2 border rounded-md bg-gray-800 text-white">
-                        <option value="dark" class="text-white">Escuro</option>
-                        <option value="light" class="text-white">Claro</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block font-medium">Tamanho da Fonte</label>
-                    <input id="fontSize" type="range" min="12" max="24" value="16" class="w-full">
-
-                    <p id="fontSizeValue" class="mt-2">Tamanho da Fonte: 16px</p>
-                </div>
-
-
-                <div class="flex items-center justify-between">
-                    <span class="font-medium">Notificações</span>
-                    <input type="checkbox" id="notificationsToggle" class="w-5 h-5">
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <span class="font-medium">Efeitos 3D</span>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input id="effectsToggle" type="checkbox" class="sr-only peer">
-                        <div
-                            class="w-11 h-6 bg-gray-600 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer-checked:after:translate-x-5 peer-checked:after:bg-white peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all">
-                        </div>
-                    </label>
-                </div>
-
-
-                <div class="flex flex-col items-center justify-center gap-4">
-                    <button id="saveButton"
-                        class="w-full drop-shadow-[0_0_10px_#D13800] max-w-xs bg-orange-700 text-white p-2 rounded-md hover:bg-orange-800 transition">Salvar
-                        Configurações
-                    </button>
-                    <a href="index.html"
-                        class="w-30 drop-shadow-[0_0_10px_#D13800] text-center bg-orange-700 text-white p-2 rounded-md hover:bg-orange-800 transition">Home</a>
-                </div>
-
-            </div>
-        </div>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Gabriel Bustus — home">
+        <span class="brand-mark">GB</span>
+        <span class="brand-name">Gabriel Bustus</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="projects.html" data-i18n="nav.work">Work</a>
+        <a href="cv.html" data-i18n="nav.resume">Résumé</a>
+        <a href="blog.html" data-i18n="nav.writing">Writing</a>
+      </nav>
+      <div class="header-controls">
+        <button class="icon-btn lang-toggle" data-lang-toggle aria-label="Switch language">PT</button>
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" />
+          </svg>
+        </button>
+        <button class="icon-btn menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+      </div>
     </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="projects.html" data-i18n="nav.work">Work</a>
+      <a href="cv.html" data-i18n="nav.resume">Résumé</a>
+      <a href="blog.html" data-i18n="nav.writing">Writing</a>
+    </nav>
+  </header>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.80/build/spline-viewer.js" defer></script>
-    <script src="splineloader.js"></script>
-    <script src="settingsPage.js"></script>
+  <main>
+    <div class="settings-card">
+      <h1 data-i18n="set.title">Settings</h1>
 
+      <div class="setting-row">
+        <div>
+          <div class="label" data-i18n="set.themeLabel">Theme</div>
+          <div class="hint" data-i18n="set.themeHint">Switch between dark and light.</div>
+        </div>
+        <div class="seg" id="themeSeg">
+          <button data-theme-opt="dark" data-i18n="set.dark">Dark</button>
+          <button data-theme-opt="light" data-i18n="set.light">Light</button>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <div class="label" data-i18n="set.langLabel">Language</div>
+          <div class="hint" data-i18n="set.langHint">Choose the site language.</div>
+        </div>
+        <div class="seg" id="langSeg">
+          <button data-lang-opt="en">EN</button>
+          <button data-lang-opt="pt">PT</button>
+        </div>
+      </div>
+
+      <div class="setting-row" style="display: block">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <div>
+            <div class="label" data-i18n="set.fontLabel">Font size</div>
+            <div class="hint" data-i18n="set.fontHint">Adjust the base reading size.</div>
+          </div>
+          <span class="tag" id="fontSizeValue">16px</span>
+        </div>
+        <input id="fontSize" type="range" min="12" max="22" value="16" class="w-full" style="width: 100%; margin-top: 14px" />
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 24px">
+        <button id="saveButton" class="btn btn--primary" style="flex: 1" data-i18n="set.save">Save settings</button>
+        <a href="index.html" class="btn btn--ghost" data-i18n="set.back">Back home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border-top: none">
+      <span data-i18n="footer.rights">© 2026 Gabriel Bustus. All rights reserved.</span>
+      <span class="mono" data-i18n="footer.built">Hand-coded with HTML, CSS & vanilla JS.</span>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+  <script src="settingsPage.js"></script>
 </body>
 
 </html>
