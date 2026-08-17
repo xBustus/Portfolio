@@ -1,264 +1,209 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="assets/Profile-Picture.ico" type="image/x-icon" />
-<title>Serveo — SaaS de gestão para restaurantes</title>
-<meta name="description" content="Serveo é o SaaS multi-tenant que une PDV, KDS, salão, delivery, cardápio digital, IA conversacional e motor fiscal — toda a operação do restaurante em uma só plataforma." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: #0a0604; }
-  .grid-bg {
-    background-image:
-      linear-gradient(rgba(239,68,68,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(239,68,68,0.06) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, #fb923c 0%, #ef4444 50%, #b91c1c 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .card-hover { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-  .card-hover:hover { transform: translateY(-4px); border-color: rgba(239,68,68,0.4); }
-  .glass { background: rgba(20,10,8,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-  @keyframes fadeUp { 0% {opacity:0; transform: translateY(20px);} 100% {opacity:1; transform: translateY(0);} }
-  .animate-fade-up { animation: fadeUp 0.7s ease-out both; }
-  @keyframes glow { 0%,100% {box-shadow: 0 0 30px -10px rgba(239,68,68,0.5);} 50% {box-shadow: 0 0 50px -5px rgba(239,68,68,0.8);} }
-  .animate-glow { animation: glow 3s ease-in-out infinite; }
-  details[open] summary .chev { transform: rotate(180deg); }
-  .chev { transition: transform 0.2s ease; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/Profile-Picture.ico" type="image/x-icon" />
+  <title data-i18n="serveo.meta">Serveo — Restaurant management SaaS</title>
+  <meta name="description"
+    content="Serveo — multi-tenant SaaS that unifies POS, kitchen display, dine-in, delivery, digital menu, conversational AI and an NFC-e fiscal engine." />
+  <meta property="og:title" content="Serveo — Restaurant management SaaS" />
+  <meta property="og:image" content="assets/Profile Picture.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="theme.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
-<body class="text-slate-200 antialiased overflow-x-hidden">
 
-<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-orange-950/60">
-  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-2 group">
-      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg shadow-red-500/30">
-        <i data-lucide="utensils" class="w-5 h-5 text-white"></i>
-      </div>
-      <span class="text-xl font-bold tracking-tight">Serveo</span>
-    </a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
-      <a href="#modulos" class="hover:text-white transition">Módulos</a>
-      <a href="#stack" class="hover:text-white transition">Stack</a>
-      <a href="#fases" class="hover:text-white transition">Fases</a>
-      <a href="#faq" class="hover:text-white transition">FAQ</a>
-    </div>
-    <a href="projects.html" class="inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-white transition">
-      <i data-lucide="arrow-left" class="w-4 h-4"></i>
-      Projetos
-    </a>
-  </nav>
-</header>
-
-<section class="relative pt-36 pb-24 overflow-hidden">
-  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
-  <div class="absolute top-20 -left-40 w-[500px] h-[500px] rounded-full bg-orange-600/20 blur-3xl pointer-events-none"></div>
-  <div class="absolute top-40 -right-40 w-[500px] h-[500px] rounded-full bg-red-600/20 blur-3xl pointer-events-none"></div>
-
-  <div class="relative max-w-7xl mx-auto px-6 text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-950/60 border border-orange-900/60 text-xs text-slate-300 mb-6 animate-fade-up">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      SaaS multi-tenant para restaurantes
-    </div>
-    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 animate-fade-up" style="animation-delay:.1s">
-      O restaurante todo<br>
-      <span class="gradient-text">em uma só tela.</span>
-    </h1>
-    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay:.2s">
-      Serveo une PDV, KDS, salão, delivery, cardápio digital, IA conversacional e motor fiscal — para a operação que não pode perder uma comanda nem uma nota.
-    </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up" style="animation-delay:.3s">
-      <a href="#modulos" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-7 py-3.5 rounded-xl font-semibold transition shadow-xl shadow-red-600/30 animate-glow">
-        Ver os módulos
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Gabriel Bustus — home">
+        <span class="brand-mark">GB</span><span class="brand-name">Gabriel Bustus</span>
       </a>
-      <a href="#stack" class="inline-flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-white px-7 py-3.5 rounded-xl font-semibold transition">
-        Stack técnica
-        <i data-lucide="code-2" class="w-4 h-4"></i>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-up" style="animation-delay:.4s">
-      <div class="text-left">
-        <div class="text-3xl font-bold gradient-text">12</div>
-        <div class="text-xs text-slate-400 mt-1">migrations cobrindo 10 fases</div>
-      </div>
-      <div class="text-left">
-        <div class="text-3xl font-bold gradient-text">2</div>
-        <div class="text-xs text-slate-400 mt-1">apps Angular (PDV + PWA)</div>
-      </div>
-      <div class="text-left">
-        <div class="text-3xl font-bold gradient-text">100%</div>
-        <div class="text-xs text-slate-400 mt-1">Supabase Cloud — sem backend próprio</div>
-      </div>
-      <div class="text-left">
-        <div class="text-3xl font-bold gradient-text">IA</div>
-        <div class="text-xs text-slate-400 mt-1">Edge Functions com Anthropic</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="modulos" class="py-24 bg-black/40 border-y border-orange-950/40">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <p class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-3">A plataforma</p>
-      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Da mesa à <span class="gradient-text">cozinha, ao fiscal.</span></h2>
-      <p class="text-lg text-slate-400">Doze módulos integrados que conversam por RLS, triggers Postgres e Edge Functions.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4"><i data-lucide="credit-card" class="w-6 h-6 text-orange-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">PDV</h3>
-        <p class="text-sm text-slate-400">Frente de caixa rápida, comandas, divisão de conta e múltiplas formas de pagamento.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-4"><i data-lucide="chef-hat" class="w-6 h-6 text-red-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">KDS</h3>
-        <p class="text-sm text-slate-400">Painel da cozinha em tempo real — preparo, prioridades e tempo por prato.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4"><i data-lucide="layout-grid" class="w-6 h-6 text-amber-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">Salão</h3>
-        <p class="text-sm text-slate-400">Mapa de mesas, status, junções e reservas com sincronização ao vivo.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4"><i data-lucide="bike" class="w-6 h-6 text-emerald-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">Delivery</h3>
-        <p class="text-sm text-slate-400">Pedidos, taxa por região, status de entrega e integração com motoboy.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-4"><i data-lucide="qr-code" class="w-6 h-6 text-violet-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">Cardápio digital</h3>
-        <p class="text-sm text-slate-400">QR Code na mesa, PWA do cliente, abertura de comanda sem app.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4"><i data-lucide="bot" class="w-6 h-6 text-cyan-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">IA conversacional</h3>
-        <p class="text-sm text-slate-400">Garçom virtual e atendimento WhatsApp com Anthropic via Edge Functions.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center mb-4"><i data-lucide="receipt" class="w-6 h-6 text-rose-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">Motor fiscal</h3>
-        <p class="text-sm text-slate-400">NFC-e SEFAZ, contingência e impressão automática integradas ao PDV.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mb-4"><i data-lucide="message-circle" class="w-6 h-6 text-pink-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">Meta / WhatsApp</h3>
-        <p class="text-sm text-slate-400">Webhook integrado ao Meta Graph para pedidos e respostas automáticas.</p>
-      </div>
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/40 border border-slate-800 rounded-2xl p-6 card-hover">
-        <div class="w-12 h-12 rounded-xl bg-lime-500/10 border border-lime-500/30 flex items-center justify-center mb-4"><i data-lucide="bar-chart-3" class="w-6 h-6 text-lime-400"></i></div>
-        <h3 class="font-bold text-lg mb-2">Relatórios</h3>
-        <p class="text-sm text-slate-400">Vendas, ticket médio, mix de produtos e fechamento de caixa em tempo real.</p>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="projects.html" aria-current="page" data-i18n="nav.work">Work</a>
+        <a href="cv.html" data-i18n="nav.resume">Résumé</a>
+        <a href="blog.html" data-i18n="nav.writing">Writing</a>
+      </nav>
+      <div class="header-controls">
+        <button class="icon-btn lang-toggle" data-lang-toggle aria-label="Switch language">PT</button>
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" />
+          </svg>
+        </button>
+        <button class="icon-btn menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="projects.html" aria-current="page" data-i18n="nav.work">Work</a>
+      <a href="cv.html" data-i18n="nav.resume">Résumé</a>
+      <a href="blog.html" data-i18n="nav.writing">Writing</a>
+    </nav>
+  </header>
 
-<section id="stack" class="py-24">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <p class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-3">Arquitetura</p>
-      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Sem backend próprio. <span class="gradient-text">Supabase + Angular.</span></h2>
-      <p class="text-lg text-slate-400">Regras de negócio em policies RLS, triggers Postgres ou Edge Functions Deno. Multi-tenant nativo.</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-7">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center"><i data-lucide="layout-dashboard" class="w-5 h-5 text-orange-400"></i></div>
-          <h3 class="font-bold text-lg">Frontend</h3>
+  <main>
+    <!-- Hero -->
+    <section class="cs-hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container">
+        <span class="status-pill"><span class="status-dot"></span><span data-i18n="serveo.badge">Multi-tenant SaaS for
+            restaurants</span></span>
+        <h1><span data-i18n="serveo.h1a">The whole restaurant</span> <span class="accent" data-i18n="serveo.h1b">on one
+            screen.</span></h1>
+        <p class="section-lead" data-i18n="serveo.lead"></p>
+        <div class="cs-cta">
+          <a href="#modules" class="btn btn--primary"><span data-i18n="serveo.cta1">See the modules</span></a>
+          <a href="#stack" class="btn btn--ghost"><span data-i18n="serveo.cta2">Tech stack</span></a>
         </div>
-        <ul class="space-y-2.5 text-sm text-slate-300">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i><strong>admin-pdv</strong> · Angular 17 — operação interna</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i><strong>menu-pwa</strong> · Angular 17 — cliente final (QR mesa)</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>PWA com modo offline</li>
-        </ul>
-      </div>
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-7">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-lg bg-emerald-500/15 flex items-center justify-center"><i data-lucide="database" class="w-5 h-5 text-emerald-400"></i></div>
-          <h3 class="font-bold text-lg">Backend-as-a-Service</h3>
+        <div class="stat-grid">
+          <div class="stat"><div class="n" data-i18n="serveo.s1n">12</div><div class="l" data-i18n="serveo.s1l"></div></div>
+          <div class="stat"><div class="n" data-i18n="serveo.s2n">2</div><div class="l" data-i18n="serveo.s2l"></div></div>
+          <div class="stat"><div class="n" data-i18n="serveo.s3n">100%</div><div class="l" data-i18n="serveo.s3l"></div></div>
+          <div class="stat"><div class="n" data-i18n="serveo.s4n">AI</div><div class="l" data-i18n="serveo.s4l"></div></div>
         </div>
-        <ul class="space-y-2.5 text-sm text-slate-300">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Supabase Cloud — Postgres + RLS</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Auth, Realtime, Storage</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5"></i>Edge Functions Deno (IA, fiscal, webhook)</li>
-        </ul>
+      </div>
+    </section>
+
+    <!-- Modules -->
+    <section id="modules" class="section">
+      <div class="container">
+        <div class="reveal" style="text-align:center; max-width:640px; margin-inline:auto">
+          <p class="eyebrow" style="justify-content:center" data-i18n="serveo.modEyebrow">The platform</p>
+          <h2 class="section-title" data-i18n="serveo.modTitle">From the table to the kitchen, to the tax office.</h2>
+          <p class="section-lead" style="margin-inline:auto" data-i18n="serveo.modLead"></p>
+        </div>
+        <div class="feature-grid reveal" style="margin-top:44px">
+          <div class="feature"><div class="feature-icon"><i data-lucide="credit-card"></i></div><h3 data-i18n="serveo.m1t">POS</h3><p data-i18n="serveo.m1d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="chef-hat"></i></div><h3 data-i18n="serveo.m2t">KDS</h3><p data-i18n="serveo.m2d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="layout-grid"></i></div><h3 data-i18n="serveo.m3t">Dining room</h3><p data-i18n="serveo.m3d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="bike"></i></div><h3 data-i18n="serveo.m4t">Delivery</h3><p data-i18n="serveo.m4d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="qr-code"></i></div><h3 data-i18n="serveo.m5t">Digital menu</h3><p data-i18n="serveo.m5d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="bot"></i></div><h3 data-i18n="serveo.m6t">Conversational AI</h3><p data-i18n="serveo.m6d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="receipt"></i></div><h3 data-i18n="serveo.m7t">Fiscal engine</h3><p data-i18n="serveo.m7d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="message-circle"></i></div><h3 data-i18n="serveo.m8t">Meta / WhatsApp</h3><p data-i18n="serveo.m8d"></p></div>
+          <div class="feature"><div class="feature-icon"><i data-lucide="bar-chart-3"></i></div><h3 data-i18n="serveo.m9t">Reports</h3><p data-i18n="serveo.m9d"></p></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Stack -->
+    <section id="stack" class="section">
+      <div class="container">
+        <div class="reveal" style="text-align:center; max-width:680px; margin-inline:auto">
+          <p class="eyebrow" style="justify-content:center" data-i18n="serveo.stackEyebrow">Architecture</p>
+          <h2 class="section-title" data-i18n="serveo.stackTitle">No custom backend. Supabase + Angular.</h2>
+          <p class="section-lead" style="margin-inline:auto" data-i18n="serveo.stackLead"></p>
+        </div>
+        <div class="grid grid--2 reveal" style="margin-top:44px">
+          <div class="card"><div class="card-body">
+            <div class="feature-icon"><i data-lucide="layout-dashboard"></i></div>
+            <h3 class="card-title" data-i18n="serveo.feT">Frontend</h3>
+            <ul class="card-list">
+              <li data-i18n="serveo.fe1"></li><li data-i18n="serveo.fe2"></li><li data-i18n="serveo.fe3"></li>
+            </ul>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <div class="feature-icon"><i data-lucide="database"></i></div>
+            <h3 class="card-title" data-i18n="serveo.beT">Backend-as-a-Service</h3>
+            <ul class="card-list">
+              <li data-i18n="serveo.be1"></li><li data-i18n="serveo.be2"></li><li data-i18n="serveo.be3"></li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Phases -->
+    <section id="phases" class="section">
+      <div class="container">
+        <div class="reveal" style="text-align:center; max-width:680px; margin-inline:auto">
+          <p class="eyebrow" style="justify-content:center" data-i18n="serveo.phEyebrow">Roadmap</p>
+          <h2 class="section-title" data-i18n="serveo.phTitle">Built in 10 phases.</h2>
+          <p class="section-lead" style="margin-inline:auto" data-i18n="serveo.phLead"></p>
+        </div>
+        <div class="grid grid--3 reveal" style="margin-top:44px">
+          <div class="feature"><span class="card-year" style="color:var(--accent)" data-i18n="serveo.p1l">PHASE 0–1</span><h3 style="margin-top:8px" data-i18n="serveo.p1t"></h3></div>
+          <div class="feature"><span class="card-year" style="color:var(--accent)" data-i18n="serveo.p2l">PHASE 2–3</span><h3 style="margin-top:8px" data-i18n="serveo.p2t"></h3></div>
+          <div class="feature"><span class="card-year" style="color:var(--accent)" data-i18n="serveo.p3l">PHASE 4</span><h3 style="margin-top:8px" data-i18n="serveo.p3t"></h3></div>
+          <div class="feature"><span class="card-year" style="color:var(--accent)" data-i18n="serveo.p4l">PHASE 5–6</span><h3 style="margin-top:8px" data-i18n="serveo.p4t"></h3></div>
+          <div class="feature"><span class="card-year" style="color:var(--accent)" data-i18n="serveo.p5l">PHASE 7</span><h3 style="margin-top:8px" data-i18n="serveo.p5t"></h3></div>
+          <div class="feature"><span class="card-year" style="color:var(--accent)" data-i18n="serveo.p6l">PHASE 8–10</span><h3 style="margin-top:8px" data-i18n="serveo.p6t"></h3></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="reveal" style="text-align:center; margin-bottom:40px">
+          <p class="eyebrow" style="justify-content:center" data-i18n="cs.faq">FAQ</p>
+          <h2 class="section-title" data-i18n="cs.faqTitle">Frequently asked questions</h2>
+        </div>
+        <div class="faq reveal">
+          <details class="goal"><summary><span data-i18n="serveo.q1"></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg></summary><div class="goal-body"><span data-i18n="serveo.a1"></span></div></details>
+          <details class="goal"><summary><span data-i18n="serveo.q2"></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg></summary><div class="goal-body"><span data-i18n="serveo.a2"></span></div></details>
+          <details class="goal"><summary><span data-i18n="serveo.q3"></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg></summary><div class="goal-body"><span data-i18n="serveo.a3"></span></div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><span class="brand-mark">GB</span><span class="brand-name">Gabriel Bustus</span></a>
+        <p data-i18n="footer.tagline"></p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.navTitle">Navigate</h4>
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="projects.html" data-i18n="nav.work">Work</a>
+          <a href="cv.html" data-i18n="nav.resume">Résumé</a>
+          <a href="blog.html" data-i18n="nav.writing">Writing</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.moreTitle">More</h4>
+          <a href="certificados.html" data-i18n="footer.certs">Certificates</a>
+          <a href="endlessList.html" data-i18n="footer.goals">Goals</a>
+          <a href="settings.html" data-i18n="footer.settings">Settings</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="container footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Gabriel Bustus. All rights reserved.</span>
+      <span class="mono" data-i18n="footer.built">Hand-coded with HTML, CSS & vanilla JS.</span>
+    </div>
+  </footer>
 
-<section id="fases" class="py-24 bg-black/40 border-y border-orange-950/40">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <p class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-3">Roadmap</p>
-      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Construído em <span class="gradient-text">10 fases.</span></h2>
-      <p class="text-lg text-slate-400">Todas as fases (0–10) já têm migração + Edge Functions necessárias. Integrações externas entregues como stubs documentados.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-      <div class="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-5"><div class="text-xs font-mono text-emerald-400 mb-1">FASE 0–1</div><div class="font-semibold">Fundação + Operação</div></div>
-      <div class="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-5"><div class="text-xs font-mono text-emerald-400 mb-1">FASE 2–3</div><div class="font-semibold">Estoque + Compras</div></div>
-      <div class="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-5"><div class="text-xs font-mono text-emerald-400 mb-1">FASE 4</div><div class="font-semibold">Cardápio digital + QR</div></div>
-      <div class="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-5"><div class="text-xs font-mono text-emerald-400 mb-1">FASE 5–6</div><div class="font-semibold">Delivery + Pagamentos</div></div>
-      <div class="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-5"><div class="text-xs font-mono text-emerald-400 mb-1">FASE 7</div><div class="font-semibold">Motor fiscal NFC-e</div></div>
-      <div class="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-5"><div class="text-xs font-mono text-emerald-400 mb-1">FASE 8–10</div><div class="font-semibold">IA + Meta + BI</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="py-24">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <p class="text-sm font-semibold text-orange-400 uppercase tracking-wider mb-3">FAQ</p>
-      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Perguntas frequentes</h2>
-    </div>
-    <div class="space-y-3">
-      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
-        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>Por que multi-tenant?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
-        <p class="text-slate-400 text-sm mt-3">Cada restaurante tem o próprio espaço lógico isolado por RLS, sem precisar manter instâncias separadas. Reduz custo e simplifica deploy.</p>
-      </details>
-      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
-        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>Funciona sem internet?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
-        <p class="text-slate-400 text-sm mt-3">O PDV opera em modo PWA com cache local; comandas sincronizam quando a conexão volta. O motor fiscal tem contingência NFC-e.</p>
-      </details>
-      <details class="group bg-slate-900/60 border border-slate-800 rounded-xl p-5">
-        <summary class="flex items-center justify-between cursor-pointer font-semibold list-none"><span>Como funciona a IA conversacional?</span><i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 chev"></i></summary>
-        <p class="text-slate-400 text-sm mt-3">Edge Functions chamam a API da Anthropic com contexto do cardápio e da comanda. O cliente conversa em linguagem natural pelo WhatsApp ou pelo QR.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<footer class="border-t border-orange-950/60 py-10 text-sm text-slate-500">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2">
-      <div class="w-7 h-7 rounded-md bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center"><i data-lucide="utensils" class="w-4 h-4 text-white"></i></div>
-      <span class="font-bold text-slate-300">Serveo</span>
-      <span>· SaaS de gestão para restaurantes</span>
-    </div>
-    <a href="projects.html" class="hover:text-white transition">← Voltar aos projetos</a>
-    <div>© <span id="year"></span> Gabriel Bustus.</div>
-  </div>
-</footer>
-
-<script>
-  lucide.createIcons();
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+  <script>lucide.createIcons();</script>
 </body>
+
 </html>
